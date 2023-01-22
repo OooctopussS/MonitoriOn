@@ -1,0 +1,45 @@
+﻿@model MonitoriOn.Models.FrameUpdate
+
+@{
+    ViewData["Title"] = "Удаление Частоты обновления";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Categories.min.css" />
+}
+
+<form class="form" method="post">
+    <input asp-for="Id" hidden />
+    <div class="form-header">
+        <h2>Удаление Частоты обновления</h2>
+    </div>
+    <div class="form-body">
+        <div class="form-body-group">
+            <div class="form-body-group-label">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="form-body-group-main">
+                <input asp-for="Name" autocomplete="off" disabled />
+            </div>
+        </div>
+        <div class="form-body-group">
+            <div class="form-body-group-label">
+                <label asp-for="ShortDescription"></label>
+            </div>
+            <div class="form-body-group-main">
+                <input asp-for="ShortDescription" autocomplete="off" disabled />
+            </div>
+        </div>
+        <div class="form-body-group">
+            <div class="form-body-group-buttons-container">
+                <div class="form-body-group-buttons">
+                    <input class="form-body-group-buttons-button btn-danger" type="submit" value="Удалить" />
+                </div>
+                <div class="form-body-group-buttons">
+                    <a class="form-body-group-buttons-button btn-default" asp-action="Index">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

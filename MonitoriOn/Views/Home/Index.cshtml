@@ -1,0 +1,29 @@
+﻿@model MonitoriOn.Models.ViewModels.HomeVM
+
+@{
+    ViewData["Title"] = "интернет-магазин мониторов";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/MainPage.min.css" />
+}
+
+<div class="main-body">
+    <div class="main-body-selectMenu">
+
+    </div>
+    <div class="main-body-monitors">
+        @if (Model.Monitors != null)
+        {
+            @foreach (var monitor in Model.Monitors)
+            {
+                <partial name="_MonitorCard" model="monitor" />
+            }
+        }
+        else
+        {
+            <h2 class="main-body-monitors-empty">В данный момент товары не доступны</h2>
+        }
+    </div>
+</div>

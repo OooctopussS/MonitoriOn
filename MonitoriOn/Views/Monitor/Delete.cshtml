@@ -1,0 +1,111 @@
+﻿@model MonitoriOn.Models.Monitor
+
+@{
+    ViewData["Title"] = "Удаление Монитора";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Categories.min.css" />
+}
+
+<form class="form" method="post" enctype="multipart/form-data">
+   <input asp-for="Id" hidden />
+    <div class="form-header">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+    <div class="form-body">
+        <div class="form-body-groups">
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Name" autocomplete="off" disabled />
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Price"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Price" autocomplete="off" disabled />
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Count"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Count" autocomplete="off" disabled />
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="ShortDescription"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="ShortDescription" autocomplete="off" disabled />
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Description" autocomplete="off" disabled />
+                </div>
+            </div>
+            @if (Model.Brand != null && Model.Brand.Name != null)
+            {
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="BrandId"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="Brand!.Name" disabled/>
+                    </div>
+                </div>
+            }
+            @if (Model.DisplayResolution != null && Model.DisplayResolution.Name != null)
+            {
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="DisplayResolutionId"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="DisplayResolution!.Name" disabled />
+                    </div>
+                </div>
+            }
+            @if (Model.FrameUpdate != null)
+            {
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="FrameUpdaetId"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="FrameUpdate!.Name" disabled />
+                    </div>
+                </div>
+            }
+            <div class="form-body-group">
+                <div class="form-body-group-buttons-container">
+                    <div class="form-body-group-buttons">
+                        <input type="submit" class="form-body-group-buttons-button btn-danger" value="Удалить" />
+                    </div>
+                    <div class="form-body-group-buttons">
+                        <a class="form-body-group-buttons-button btn-default" asp-action="Index">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-body-img">
+            @if (Model.Id != 0)
+            {
+                <img src="@WC.ImagePath@Model.Image">
+            }
+        </div>
+    </div>
+</form>
+

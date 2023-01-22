@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MonitoriOn - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MonitoriOn.styles.css" asp-append-version="true" />
+    @RenderSection("head_Link", required: false)
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-row">
+                <div class="logo-container">
+                    <a class="logo-container-logo" asp-controller="Home" asp-action="Index">
+                        <img src="~/img/header/monitorLogo.svg"/>
+                        <span>MonitoriOn</span>
+                    </a>
+                </div>
+                <div class="header-row-rightSide">
+                    <div class="header-row-rightSide-adminPanel">
+                        <input class="settingsMenu-toggle" onclick="dropdownToggle()" type="image" src="~/img/header/adminHeader.svg" width="25px" height="25px" />
+                        <ul id="adminPanelDropDown" class="settingsMenu-dropDown">
+                            <li>
+                                <a asp-controller="Brand" asp-action="Index">Бренды</a>
+                            </li>
+                            <li>
+                                <a asp-controller="DisplayResolution" asp-action="Index">Разрешение экрана</a>
+                            </li>
+                            <li>
+                                <a asp-controller="FrameUpdate" asp-action="Index">Частота обновления</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Monitor" asp-action="Index">Мониторы</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="header-row-rightSide-userPanel">
+                        <img src="~/img/header/userHeader.svg" width="25px" height="25px" />
+                    </a>
+                    <a href="#" class="header-row-rightSide-cartPanel">
+                        <img src="~/img/header/basketHeader.svg" width="25px" height="25px" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main role="main">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                &copy; 2023 - MonitoriOn - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MonitoriOn.Models.Brand>
+
+@{
+    ViewData["Title"] = "Бренды";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Categories.min.css" />
+}
+
+<div class="main-header">
+    <div class="main-header-title">
+        <h2>Список Брендов</h2>
+    </div>
+    <div class="main-header-create">
+        <a asp-controller="Brand" asp-action="Create" class="btn-default">Добавить Бренд</a>
+    </div>
+</div>
+
+@if (Model.Count() > 0)
+{
+        <div class="main-body">
+            @foreach (var obj in Model)
+            {
+                <div class="main-body-element">
+                    <div class="main-body-element-name">
+                        <h4>@obj.Name</h4>
+                    </div>
+                    <div class="main-body-element-shortdesc">
+                        <p>@obj.ShortDescription</p>
+                    </div>
+                    <div class="main-body-element-buttons">
+                        <a class="btn-default" asp-controller="Brand" asp-action="Edit" asp-route-Id="@obj.Id">Изменить</a>
+                        <a class="btn-default" asp-controller="Brand" asp-action="Delete" asp-route-Id="@obj.Id">Удалить</a>
+                    </div>
+                </div>
+            }
+        </div>
+}
+else
+{
+    <h3>Список пуст</h3>
+}
+
+<div class="main-footer">
+    <a asp-controller="Home" asp-action="Index" class="btn-default">Назад</a>
+</div>

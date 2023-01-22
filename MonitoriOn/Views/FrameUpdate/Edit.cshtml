@@ -1,0 +1,47 @@
+﻿@model MonitoriOn.Models.FrameUpdate
+
+@{
+    ViewData["Title"] = "Редактирование Частоты обновления";
+}
+
+@section head_Link
+    {
+    <link rel="stylesheet" href="~/css/Categories.min.css" />
+}
+
+<form class="form" method="post">
+    <input asp-for="Id" hidden />
+    <div class="form-header">
+        <h2>Редактирование Частоты обновления</h2>
+    </div>
+    <div class="form-body">
+        <div class="form-body-group">
+            <div class="form-body-group-label">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="form-body-group-main">
+                <input asp-for="Name" autocomplete="off" />
+                <span asp-validation-for="Name"></span>
+            </div>
+        </div>
+        <div class="form-body-group">
+            <div class="form-body-group-label">
+                <label asp-for="ShortDescription"></label>
+            </div>
+            <div class="form-body-group-main">
+                <input asp-for="ShortDescription" autocomplete="off" />
+                <span asp-validation-for="ShortDescription"></span>
+            </div>
+        </div>
+        <div class="form-body-group">
+            <div class="form-body-group-buttons-container">
+                <div class="form-body-group-buttons">
+                    <input class="form-body-group-buttons-button btn-default" type="submit" value="Редактировать" />
+                </div>
+                <div class="form-body-group-buttons">
+                    <a class="form-body-group-buttons-button btn-default" asp-action="Index">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

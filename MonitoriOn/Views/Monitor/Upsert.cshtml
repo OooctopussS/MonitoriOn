@@ -1,0 +1,160 @@
+﻿@model MonitoriOn.Models.ViewModels.MonitorVM
+
+@{
+    ViewData["Title"] = "Создание монитора";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Categories.min.css" />
+}
+
+<form class="form" method="post" enctype="multipart/form-data">
+    @if (Model.Monitor.Id != 0)
+    {
+        ViewData["Title"] = "Редактирование монитора";
+        <input asp-for="Monitor.Id" hidden />
+    }
+    <div class="form-header">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+    <div class="form-body">
+        <div class="form-body-groups">
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Monitor.Name"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Monitor.Name" autocomplete="off" />
+                    <span asp-validation-for="Monitor.Name"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Monitor.Price"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Monitor.Price" autocomplete="off" />
+                    <span asp-validation-for="Monitor.Price"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Monitor.Count"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Monitor.Count" autocomplete="off" />
+                    <span asp-validation-for="Monitor.Count"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Monitor.ShortDescription"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Monitor.ShortDescription" autocomplete="off" />
+                    <span asp-validation-for="Monitor.ShortDescription"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Monitor.Description"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Monitor.Description" autocomplete="off" />
+                    <span asp-validation-for="Monitor.Description"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Monitor.BrandId"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <select class="selectList" asp-for="Monitor.BrandId" asp-items="@Model.BrandSelectList" required>
+                        <option value ="1" disabled selected>--Выберите Бренд--</option>
+                    </select>
+                    <span asp-validation-for="Monitor.BrandId"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Monitor.DisplayResolutionId"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <select class="selectList"  asp-for="Monitor.DisplayResolutionId" asp-items="@Model.DisplayResolutionSelectList">
+                        <option value="1" disabled selected>--Выберите Разрешение экрана--</option>
+                    </select>
+                    <span asp-validation-for="Monitor.DisplayResolutionId"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Monitor.FrameUpdaetId"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <select class="selectList"  asp-for="Monitor.FrameUpdaetId" asp-items="@Model.FrameUpdateSelectList">
+                        <option value="1" disabled selected>--Выберите Частоту обновления--</option>
+                    </select>
+                    <span asp-validation-for="Monitor.FrameUpdaetId"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Monitor.Image"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input type="file" name="files" id="uploadBox" multiple />
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-buttons-container">
+                    <div class="form-body-group-buttons">
+                        @if (Model.Monitor.Id != 0)
+                        {
+                            <input type="submit" class="form-body-group-buttons-button btn-default" value="Обновить" />
+
+                        }
+                        else
+                        {
+                            <input type="submit" onclick="return validateInput()" class="form-body-group-buttons-button btn-default" value="Создать" />
+                        }
+                    </div>
+                    <div class="form-body-group-buttons">
+                        <a class="form-body-group-buttons-button btn-default" asp-action="Index">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-body-img">
+            @if (Model.Monitor.Id != 0)
+            {
+                <img src="@WC.ImagePath@Model.Monitor.Image">
+            }
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire(
+                    'Ошибка!',
+                    'Выберите изображение!',
+                    'ошибка'
+                )
+                return false;
+            }
+
+            var objectList = document.getElementsByClassName('selectList');
+
+            for (var i = 0; i < objectList.length; i++)
+            {
+                if (objectList[i].value == '1')
+                    return false;
+            }
+
+            return true;
+        }
+    </script>
+}

@@ -1,0 +1,99 @@
+﻿.main-body {
+    background-color: #293133;
+
+    &-monitors {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 40px;
+        margin-top: 20px;
+
+        .card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-color: #151515;
+            padding: 30px;
+            border-radius: 12px;
+            row-gap: 20px;
+
+            &-addToCart {
+                opacity: 0;
+                transition: all .3s;
+                filter: grayscale(1);
+                justify-self: end;
+
+                button {
+                    height: 42px;
+                }
+            }
+
+            &-img {
+                grid-column: 1/4;
+                display: grid;
+
+                img {
+                    justify-self: center;
+                    width: 310px;
+                    height: 310px;
+                }
+            }
+
+            &-name {
+                grid-column: 1/4;
+
+                h3 {
+                    font-size: 24px;
+                    letter-spacing: 1.5px;
+                }
+            }
+
+            &-description {
+                span {
+                    opacity: 0.8;
+                }
+            }
+
+            &-details {
+                opacity: 0;
+                transition: all .3s;
+                filter: grayscale(1);
+                justify-self: end;
+                align-self: end;
+
+                a {
+                    display: inline-block;
+                    height: 42px;
+                }
+            }
+        }
+
+        .card:hover {
+            background-color: #171717;
+
+            .card-addToCart {
+                opacity: 0.8;
+            }
+
+            .card-details {
+                opacity: 0.8;
+            }
+
+            .card-addToCart:hover {
+                opacity: 1;
+                filter: grayscale(0);
+            }
+
+            .card-details:hover {
+                opacity: 1;
+                filter: grayscale(0);
+            }
+        }
+
+
+
+        &-empty {
+            display: block;
+            text-align: center;
+            font-size: 36px;
+        }
+    }
+}
