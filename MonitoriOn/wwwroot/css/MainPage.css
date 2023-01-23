@@ -30,7 +30,10 @@
   filter: grayscale(1);
   justify-self: end;
 }
-.main-body-monitors .card-addToCart button {
+.main-body-monitors .card-addToCart button, .main-body-monitors .card-addToCart a {
+  height: 42px;
+}
+.main-body-monitors .card-addToCart form {
   height: 42px;
 }
 .main-body-monitors .card-img {
@@ -75,13 +78,13 @@
 }
 .main-body-monitors .card:hover .card-addToCart {
   opacity: 0.8;
+  filter: grayscale(0);
 }
 .main-body-monitors .card:hover .card-details {
   opacity: 0.8;
 }
 .main-body-monitors .card:hover .card-addToCart:hover {
   opacity: 1;
-  filter: grayscale(0);
 }
 .main-body-monitors .card:hover .card-details:hover {
   opacity: 1;

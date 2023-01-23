@@ -16,9 +16,10 @@
             row-gap: 20px;
 
             &-available {
-                span{
+                span {
                     padding-bottom: 4px;
                 }
+
                 .notEmpty {
                     border-bottom: 1px solid #009900;
                 }
@@ -34,7 +35,11 @@
                 filter: grayscale(1);
                 justify-self: end;
 
-                button {
+                button, a {
+                    height: 42px;
+                }
+
+                form{
                     height: 42px;
                 }
             }
@@ -93,6 +98,7 @@
 
             .card-addToCart {
                 opacity: 0.8;
+                filter: grayscale(0);
             }
 
             .card-details {
@@ -101,7 +107,6 @@
 
             .card-addToCart:hover {
                 opacity: 1;
-                filter: grayscale(0);
             }
 
             .card-details:hover {

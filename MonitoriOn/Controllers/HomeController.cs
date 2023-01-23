@@ -35,12 +35,28 @@ namespace MonitoriOn.Controllers
 
         public IActionResult Details(int id)
         {
+            List<ShoppingCart> shoppingCartList = new();
+
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart)?.Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart)!;
+            }
+
             DetailsVM DetailsVM = new()
             {
                 Monitor = _db.Monitors.Include(u => u.Brand).Include(u => u.DisplayResolution).Include(u => u.FrameUpdate)
                 .Where(u => u.Id == id).FirstOrDefault()!,
                 ExistsInCart = false
             };
+
+            foreach (var item in shoppingCartList)
+            {
+                if (item.MonitorId== id)
+                {
+                    DetailsVM.ExistsInCart = true;
+                }
+            }
 
             return View(DetailsVM);
         }
@@ -59,6 +75,28 @@ namespace MonitoriOn.Controllers
             }
 
             shoppingCartList.Add(new ShoppingCart { MonitorId= id });
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult RemoveFromCart(int id)
+        {
+            List<ShoppingCart> shoppingCartList = new();
+
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart)?.Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart)!;
+            }
+
+            var itemToRemove = shoppingCartList.SingleOrDefault(r => r.MonitorId == id);
+
+            if (itemToRemove != null)
+            {
+                shoppingCartList.Remove(itemToRemove);
+            }
+
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
 
             return RedirectToAction(nameof(Index));

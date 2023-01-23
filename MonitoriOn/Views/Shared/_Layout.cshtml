@@ -45,7 +45,8 @@
                     </a>
                     <a asp-controller="Cart" asp-action="Index" class="header-row-rightSide-cartPanel">
                         <img src="~/img/header/basketHeader.svg" width="25px" height="25px" />
-                        @if (HttpContextAccessor.HttpContext?.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null)
+                        @if (HttpContextAccessor.HttpContext?.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null
+                            && HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart)?.Count() > 0)
                         {
                             <div class="red-circle"></div>
                         }
@@ -71,7 +72,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

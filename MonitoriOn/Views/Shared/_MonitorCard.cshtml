@@ -1,5 +1,27 @@
 ﻿@model MonitoriOn.Models.Monitor
 
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using MonitoriOn.Utility
+
+@{
+    bool itemInCart = false;
+    List<ShoppingCart> shoppingCartList = new();
+
+    if (HttpContextAccessor.HttpContext?.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null
+        && HttpContextAccessor.HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart)?.Count() > 0)
+    {
+        shoppingCartList = HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart)!;
+    }
+
+    var item = shoppingCartList.SingleOrDefault(r => r.MonitorId == Model.Id);
+
+    if (item != null)
+    {
+        itemInCart = true;
+    }
+}
+
 <div class="card">
     <div class="card-available">
         @if (Model.Count > 0)
@@ -14,9 +36,16 @@
     <div class="card-addToCart">
         <form method="post" asp-controller="Home" asp-action="Details">
             <input asp-for="@Model.Id" hidden />
-            <button asp-action="Details" type="submit" class="btn-default" asp-route-Id="@Model.Id">В корзину</button>
+            <!-- Менять цвето кнопки после добавления товара в коризну или удаления-->
+            @if (!itemInCart)
+            {
+                <button asp-action="Details" type="submit" class="btn-default" asp-route-Id="@Model.Id">В корзину</button>
+            }
+            else
+            {
+                <button asp-action="RemoveFromCart" asp-route-Id="@Model.Id" class="btn-danger">В корзину</button>
+            }
         </form>
-        <!-- Ссылаться на метод пост Details-->
     </div>
     <div class="card-img">
         <img src="@WC.ImagePath@Model.Image" alt="Изображение товара"/>
