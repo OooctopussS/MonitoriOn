@@ -120,12 +120,16 @@ main {
 }
 .header-row-rightSide-cartPanel {
   justify-self: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 8px;
+  align-items: center;
 }
-.header-row-rightSide-cartPanel::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  color: red;
+.header-row-rightSide-cartPanel .red-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: red;
 }
 
 .footer {

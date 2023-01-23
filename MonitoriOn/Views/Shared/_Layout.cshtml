@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using MonitoriOn.Utility
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -39,8 +43,12 @@
                     <a href="#" class="header-row-rightSide-userPanel">
                         <img src="~/img/header/userHeader.svg" width="25px" height="25px" />
                     </a>
-                    <a href="#" class="header-row-rightSide-cartPanel">
+                    <a asp-controller="Cart" asp-action="Index" class="header-row-rightSide-cartPanel">
                         <img src="~/img/header/basketHeader.svg" width="25px" height="25px" />
+                        @if (HttpContextAccessor.HttpContext?.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null)
+                        {
+                            <div class="red-circle"></div>
+                        }
                     </a>
                 </div>
             </div>

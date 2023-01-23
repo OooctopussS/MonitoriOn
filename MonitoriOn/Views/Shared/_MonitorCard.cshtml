@@ -12,7 +12,11 @@
         }
     </div>
     <div class="card-addToCart">
-        <button type="submit" class="btn-default" asp-route-Id="@Model.Id">В корзину</button>
+        <form method="post" asp-controller="Home" asp-action="Details">
+            <input asp-for="@Model.Id" hidden />
+            <button asp-action="Details" type="submit" class="btn-default" asp-route-Id="@Model.Id">В корзину</button>
+        </form>
+        <!-- Ссылаться на метод пост Details-->
     </div>
     <div class="card-img">
         <img src="@WC.ImagePath@Model.Image" alt="Изображение товара"/>

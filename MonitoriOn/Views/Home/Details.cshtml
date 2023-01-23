@@ -1,7 +1,7 @@
 ﻿@model MonitoriOn.Models.ViewModels.DetailsVM
 
 @{
-    ViewData["Title"] = $"Монитор {Model.Monitor?.Name}";
+    ViewData["Title"] = $"Монитор {Model.Monitor.Name}";
 }
 
 @section head_Link
@@ -10,44 +10,47 @@
 }
 
 <div class="details">
-    <div class="details-header">
-        <h3>@Model.Monitor?.Name</h3>
-        <span>@Model.Monitor?.Price.ToString("C0")</span>
-    </div>
-
-    <div class="details-body">
-        <div class="details-body-img">
-            <img src="@WC.ImagePath@Model.Monitor?.Image" alt="Изображение товара" />
+    <form method="post">
+        <input asp-for="@Model.Monitor.Id" hidden/>
+        <div class="details-header">
+            <h3>@Model.Monitor.Name</h3>
+            <span>@Model.Monitor.Price.ToString("C0")</span>
         </div>
-        <div class="details-body-info">
-            @if (@Model.Monitor?.Description != null)
-            {
-                <p class="details-body-info-description">@Model.Monitor?.Description</p>
-            }
-            <h4>Характеристики</h4>
-            <div class="details-body-info-specifications">
-                <span>Бренд: </span><span>@Model.Monitor?.Brand?.Name</span>
-                <span>Разрешение: </span><span>@Model.Monitor?.DisplayResolution?.Name</span>
-                <span>Частота обновления: </span><span>@Model.Monitor?.FrameUpdate?.Name Гц</span>
+
+        <div class="details-body">
+            <div class="details-body-img">
+                <img src="@WC.ImagePath@Model.Monitor.Image" alt="Изображение товара" />
+            </div>
+            <div class="details-body-info">
+                @if (@Model.Monitor.Description != null)
+                {
+                    <p class="details-body-info-description">@Model.Monitor.Description</p>
+                }
+                <h4>Характеристики</h4>
+                <div class="details-body-info-specifications">
+                    <span>Бренд: </span><span>@Model.Monitor.Brand?.Name</span>
+                    <span>Разрешение: </span><span>@Model.Monitor.DisplayResolution?.Name</span>
+                    <span>Частота обновления: </span><span>@Model.Monitor.FrameUpdate?.Name Гц</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="details-footer">
-        <div class="details-footer-button">
-            @if (Model.ExistsInCart)
-            {
-                <a asp-action="RemoveFromCart" asp-route-Id="@Model.Monitor?.Id" class="btn-danger">Удалить из корзины</a>
-            }
-            else
-            {
-                <button type="submit" class="btn-default">Добавить в корзину</button>
-            }
+        <div class="details-footer">
+            <div class="details-footer-button">
+                @if (Model.ExistsInCart)
+                {
+                    <a asp-action="RemoveFromCart" asp-route-Id="@Model.Monitor.Id" class="btn-danger">Удалить из корзины</a>
+                }
+                else
+                {
+                    <button asp-route-Id="@Model.Monitor.Id" type="submit" class="btn-default">Добавить в корзину</button>
+                }
+            </div>
+            <div class="details-footer-button">
+                <a class="form-body-group-buttons-button btn-default" asp-action="Index">Назад</a>
+            </div>
         </div>
-        <div class="details-footer-button">
-            <a class="form-body-group-buttons-button btn-default" asp-action="Index">Назад</a>
-        </div>
-    </div>
+    </form>
 </div>
 
 

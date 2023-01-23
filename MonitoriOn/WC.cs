@@ -5,5 +5,7 @@
         // WEB CONSTANTS
 
         public const string ImagePath = @"\img\monitor\";
+
+        public const string SessionCart = "ShoppingCartSession";
     }
 }
