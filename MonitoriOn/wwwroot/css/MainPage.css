@@ -15,6 +15,15 @@
   border-radius: 12px;
   row-gap: 20px;
 }
+.main-body-monitors .card-available span {
+  padding-bottom: 4px;
+}
+.main-body-monitors .card-available .notEmpty {
+  border-bottom: 1px solid #009900;
+}
+.main-body-monitors .card-available .empty {
+  border-bottom: 1px solid #990000;
+}
 .main-body-monitors .card-addToCart {
   opacity: 0;
   transition: all 0.3s;
@@ -33,12 +42,19 @@
   width: 310px;
   height: 310px;
 }
-.main-body-monitors .card-name {
-  grid-column: 1/4;
-}
 .main-body-monitors .card-name h3 {
   font-size: 24px;
   letter-spacing: 1.5px;
+}
+.main-body-monitors .card-price {
+  grid-column: 2/4;
+  justify-self: end;
+}
+.main-body-monitors .card-price p {
+  font-size: 22px;
+}
+.main-body-monitors .card-description {
+  grid-column: 1/2;
 }
 .main-body-monitors .card-description span {
   opacity: 0.8;

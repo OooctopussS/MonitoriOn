@@ -15,6 +15,19 @@
             border-radius: 12px;
             row-gap: 20px;
 
+            &-available {
+                span{
+                    padding-bottom: 4px;
+                }
+                .notEmpty {
+                    border-bottom: 1px solid #009900;
+                }
+
+                .empty {
+                    border-bottom: 1px solid #990000;
+                }
+            }
+
             &-addToCart {
                 opacity: 0;
                 transition: all .3s;
@@ -38,15 +51,24 @@
             }
 
             &-name {
-                grid-column: 1/4;
-
                 h3 {
                     font-size: 24px;
                     letter-spacing: 1.5px;
                 }
             }
 
+            &-price {
+                grid-column: 2/4;
+                justify-self: end;
+
+                p {
+                    font-size: 22px;
+                }
+            }
+
             &-description {
+                grid-column: 1/2;
+
                 span {
                     opacity: 0.8;
                 }

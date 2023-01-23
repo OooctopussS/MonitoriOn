@@ -31,6 +31,18 @@ namespace MonitoriOn.Controllers
             return View(homeVM);
         }
 
+        public IActionResult Details(int id)
+        {
+            DetailsVM DetailsVM = new()
+            {
+                Monitor = _db.Monitors.Include(u => u.Brand).Include(u => u.DisplayResolution).Include(u => u.FrameUpdate)
+                .Where(u => u.Id == id).FirstOrDefault(),
+                ExistsInCart = false
+            };
+
+            return View(DetailsVM);
+        }
+
         public IActionResult Privacy()
         {
             return View();
