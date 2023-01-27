@@ -150,6 +150,11 @@ main {
   color: #dfdfdf;
 }
 
+.btn-default:hover {
+  color: #afafaf;
+  border-color: #afafaf;
+}
+
 .btn-danger {
   cursor: pointer;
   background-color: transparent;
@@ -157,4 +162,9 @@ main {
   border: 1px solid #990000;
   font-size: 18px;
   color: #990000;
+}
+
+.btn-danger:hover {
+  color: #660000;
+  border-color: #660000;
 }

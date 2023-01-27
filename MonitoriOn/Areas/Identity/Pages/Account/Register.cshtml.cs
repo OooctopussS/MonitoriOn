@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using MonitoriOn.Models;
 
 namespace MonitoriOn.Areas.Identity.Pages.Account
 {
@@ -18,22 +19,27 @@ namespace MonitoriOn.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
+        private readonly IUserPhoneNumberStore<IdentityUser> _phoneNumberStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
+            _phoneNumberStore = GetPhoneNumberStore();
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -60,11 +66,26 @@ namespace MonitoriOn.Areas.Identity.Pages.Account
             [Display(Name = "Подтверждение пароля")]
             [Compare("Password", ErrorMessage = "Пароль не совпадает с указанным")]
             public string ConfirmPassword { get; set; }
+
+            [Required(ErrorMessage = "Это поле обязательное")]
+            [MaxLength(30, ErrorMessage = "Максимальное кол-во символов {1}")]
+            [Display(Name = "Имя")]
+            public string FirstName { get; set; }
+
+            [Phone(ErrorMessage = "Укажите корректный номер")]
+            [Display(Name = "Номер телефона")]
+            public string PhoneNumber { get; set; }
         }
 
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            if (!await _roleManager.RoleExistsAsync(WC.AdminRole))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(WC.AdminRole));
+                await _roleManager.CreateAsync(new IdentityRole(WC.UserRole));
+            }
+
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -77,12 +98,18 @@ namespace MonitoriOn.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
+                user.FirstName = Input.FirstName;
+
+                await _phoneNumberStore.SetPhoneNumberAsync(user, Input.PhoneNumber, CancellationToken.None);
+
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, WC.UserRole);
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -94,8 +121,8 @@ namespace MonitoriOn.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Подтвердите вашу почту",
+                        $"Подтвердите ваш аккаунт <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Нажмите сюда</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -116,16 +143,16 @@ namespace MonitoriOn.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private MonitoriOnUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<MonitoriOnUser>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(MonitoriOnUser)}'. " +
+                    $"Ensure that '{nameof(MonitoriOnUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
@@ -138,5 +165,14 @@ namespace MonitoriOn.Areas.Identity.Pages.Account
             }
             return (IUserEmailStore<IdentityUser>)_userStore;
         }
+
+        private IUserPhoneNumberStore<IdentityUser> GetPhoneNumberStore()
+        {
+            if (!_userManager.SupportsUserPhoneNumber)
+            {
+                throw new NotSupportedException("The default UI requires a user store with phone number support.");
+            }
+            return (IUserPhoneNumberStore<IdentityUser>)_userStore;
+        } 
     }
 }

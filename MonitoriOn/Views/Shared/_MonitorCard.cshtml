@@ -36,7 +36,6 @@
     <div class="card-addToCart">
         <form method="post" asp-controller="Home" asp-action="Details">
             <input asp-for="@Model.Id" hidden />
-            <!-- Менять цвето кнопки после добавления товара в коризну или удаления-->
             @if (!itemInCart)
             {
                 <button asp-action="Details" type="submit" class="btn-default" asp-route-Id="@Model.Id">В корзину</button>

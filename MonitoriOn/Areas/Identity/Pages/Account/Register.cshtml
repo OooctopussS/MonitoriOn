@@ -23,6 +23,18 @@
             </div>
 
             <div>
+                <label asp-for="Input.FirstName"></label>
+                <input asp-for="Input.FirstName" autocomplete="off" placeholder="Введите имя" aria-required="true" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" autocomplete="off" placeholder="Укажите номер телефона" aria-required="true" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div>
                 <label asp-for="Input.Password"></label>
                 <input asp-for="Input.Password" autocomplete="off" placeholder="Введите пароль" aria-required="true" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
@@ -36,7 +48,7 @@
 
             <button id="registerSubmit" type="submit" class="btn-default">Создать</button>
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger validationRegister"></div>
 
         </form>
     </div>
