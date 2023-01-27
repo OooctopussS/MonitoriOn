@@ -1,0 +1,59 @@
+﻿.login, .register {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    grid-row-gap: 40px;
+
+    .login-enter, .register-enter {
+        width: 20%;
+    }
+
+    .form-login, .form-register {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row-gap: 20px;
+
+        .validationLogin {
+            ul {
+                li::marker {
+                    content: '';
+                }
+            }
+        }
+
+        .form-check-input {
+            margin-left: 10px;
+        }
+    }
+
+    .form-forgotPassword {
+        justify-self: center;
+        margin-top: 10px;
+
+        a {
+            color: lightgray;
+        }
+    }
+}
+
+.form-login, .form-register {
+    label {
+        font-size: 18px;
+    }
+
+    input:not(.form-check-input) {
+        width: 100%;
+        display: inherit;
+        background-color: transparent;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 18px;
+        color: white;
+        border: 2px solid white;
+    }
+}
+
+.text-danger{
+    color: red;
+}
+

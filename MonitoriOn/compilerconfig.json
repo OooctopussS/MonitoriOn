@@ -14,5 +14,9 @@
   {
     "outputFile": "wwwroot/css/Details.css",
     "inputFile": "wwwroot/scss/Details.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Authentication.css",
+    "inputFile": "wwwroot/scss/Authentication.scss"
   }
 ]

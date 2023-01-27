@@ -95,7 +95,10 @@ main {
 .header-row-rightSide-adminPanel {
   justify-self: end;
 }
-.header-row-rightSide-adminPanel .settingsMenu-dropDown {
+.header-row-rightSide-userPanel {
+  justify-self: center;
+}
+.header-row-rightSide .panel-dropdown {
   display: none;
   position: absolute;
   margin-top: 8px;
@@ -108,15 +111,12 @@ main {
   min-width: 8rem;
   z-index: 1;
 }
-.header-row-rightSide-adminPanel .settingsMenu-dropDown li {
+.header-row-rightSide .panel-dropdown li {
   text-align: left;
   padding: 0px 10px 10px 10px;
 }
-.header-row-rightSide-adminPanel .settingsMenu-dropDown li a {
+.header-row-rightSide .panel-dropdown li a {
   color: #dfdfdf;
-}
-.header-row-rightSide-userPanel {
-  justify-self: center;
 }
 .header-row-rightSide-cartPanel {
   justify-self: start;

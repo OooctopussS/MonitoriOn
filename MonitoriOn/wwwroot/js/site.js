@@ -1,10 +1,29 @@
 ﻿function dropdownToggle() {
-    document.getElementById("adminPanelDropDown").classList.toggle("show");
+
+    var userDropdown = document.getElementById("userPanelDropdown");
+
+    if (userDropdown.classList.contains('show'))
+    {
+        userDropdown.classList.toggle('show');
+    }
+
+    document.getElementById("adminPanelDropdown").classList.toggle("show");
+}
+
+function userdropdownToggle() {
+
+    var adminDropdown = document.getElementById("adminPanelDropdown");
+
+    if (adminDropdown.classList.contains('show'))
+    {
+        adminDropdown.classList.toggle('show')
+    }
+    document.getElementById("userPanelDropdown").classList.toggle("show");
 }
 
 window.onclick = function (event) {
     if (!event.target.matches('.settingsMenu-toggle')) {
-        var dropdowns = document.getElementsByClassName("settingsMenu-dropDown");
+        var dropdowns = document.getElementsByClassName("panel-dropdown");
         var i;
         for (i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];

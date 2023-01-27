@@ -85,10 +85,15 @@
 .form-header {
   margin-bottom: 40px;
 }
-.form-body {
+.form-body-monitor {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 160px;
+  align-items: center;
+}
+.form-body-categories {
+  display: grid;
+  grid-template-columns: 0.3fr;
   align-items: center;
 }
 .form-body-img {

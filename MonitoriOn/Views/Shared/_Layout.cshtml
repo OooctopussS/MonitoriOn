@@ -25,7 +25,7 @@
                 <div class="header-row-rightSide">
                     <div class="header-row-rightSide-adminPanel">
                         <input class="settingsMenu-toggle" onclick="dropdownToggle()" type="image" src="~/img/header/adminHeader.svg" width="25px" height="25px" />
-                        <ul id="adminPanelDropDown" class="settingsMenu-dropDown">
+                        <ul id="adminPanelDropdown" class="panel-dropdown">
                             <li>
                                 <a asp-controller="Brand" asp-action="Index">Бренды</a>
                             </li>
@@ -40,9 +40,9 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="#" class="header-row-rightSide-userPanel">
-                        <img src="~/img/header/userHeader.svg" width="25px" height="25px" />
-                    </a>
+                    <div class="header-row-rightSide-userPanel">
+                        <partial name="_LoginPartial" />
+                    </div>
                     <a asp-controller="Cart" asp-action="Index" class="header-row-rightSide-cartPanel">
                         <img src="~/img/header/basketHeader.svg" width="25px" height="25px" />
                         @if (HttpContextAccessor.HttpContext?.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null

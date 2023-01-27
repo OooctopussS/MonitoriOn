@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MonitoriOn.Models;
 
 namespace MonitoriOn.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Models.Monitor> Monitors { get; set; } = null!;
         public DbSet<Brand> Brands { get; set; } = null!;

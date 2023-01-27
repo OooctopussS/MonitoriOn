@@ -109,31 +109,33 @@ main {
 
             &-adminPanel {
                 justify-self: end;
-
-                .settingsMenu-dropDown {
-                    display: none;
-                    position: absolute;
-                    margin-top: 8px;
-                    padding: 8px 0;
-                    float: none;
-                    background: rgba(23, 26, 28, 0.8);
-                    list-style: none;
-                    border: 1px solid rgba(0,0,0, 0.15);
-                    border-radius: .25rem;
-                    min-width: 8rem;
-                    z-index: 1;
-                    li {
-                        text-align: left;
-                        padding: 0px 10px 10px 10px;
-                        a{
-                            color: #dfdfdf;
-                        }
-                    }
-                }
             }
 
             &-userPanel {
                 justify-self: center;
+            }
+
+            .panel-dropdown {
+                display: none;
+                position: absolute;
+                margin-top: 8px;
+                padding: 8px 0;
+                float: none;
+                background: rgba(23, 26, 28, 0.8);
+                list-style: none;
+                border: 1px solid rgba(0,0,0, 0.15);
+                border-radius: .25rem;
+                min-width: 8rem;
+                z-index: 1;
+
+                li {
+                    text-align: left;
+                    padding: 0px 10px 10px 10px;
+
+                    a {
+                        color: #dfdfdf;
+                    }
+                }
             }
 
             &-cartPanel {
@@ -143,14 +145,13 @@ main {
                 grid-column-gap: 8px;
                 align-items: center;
 
-                .red-circle{
+                .red-circle {
                     width: 8px;
                     height: 8px;
                     border-radius: 50%;
                     background-color: red;
                 }
             }
-
         }
     }
 }

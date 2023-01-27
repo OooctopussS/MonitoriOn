@@ -100,14 +100,24 @@
         margin-bottom: 40px;
     }
 
-    &-body {
+    &-body-monitor {
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-gap: 160px;
         align-items: center;
+    }
+
+    &-body-categories {
+        display: grid;
+        grid-template-columns: 0.3fr;
+        align-items: center;
+    }
+
+    &-body {
 
         &-img {
             align-self: start;
+
             img {
                 padding: 20px;
                 border: 1px solid #ffffff;
