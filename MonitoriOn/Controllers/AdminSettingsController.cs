@@ -42,7 +42,7 @@ namespace MonitoriOn.Controllers
 
                 @TempData["SetAdmin"] = notFound;
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(SetAdmin));
             }
 
             var user = await _userManager.FindByNameAsync(name);
@@ -59,7 +59,7 @@ namespace MonitoriOn.Controllers
 
                     @TempData["SetAdmin"] = userInRole;
 
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(SetAdmin));
 
                 }
             }
@@ -69,14 +69,14 @@ namespace MonitoriOn.Controllers
 
                 @TempData["SetAdmin"] = notFound;
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(SetAdmin));
             }
 
             string successfullAdded = "Роль успешна присвоена пользователю";
 
             @TempData["SetAdmin"] = successfullAdded;
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(SetAdmin));
         }
 
         // GET - DELETEADMIN
@@ -98,7 +98,7 @@ namespace MonitoriOn.Controllers
 
                 @TempData["DeleteAdmin"] = notFound;
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(DeleteAdmin));
             }
 
             var user = await _userManager.FindByNameAsync(name);
@@ -115,7 +115,7 @@ namespace MonitoriOn.Controllers
 
                     @TempData["DeleteAdmin"] = userInRole;
 
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(DeleteAdmin));
 
                 }
             }
@@ -125,14 +125,14 @@ namespace MonitoriOn.Controllers
 
                 @TempData["DeleteAdmin"] = notFound;
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(DeleteAdmin));
             }
 
             string successfullAdded = "Роль успешна удалена у пользователя";
 
             @TempData["DeleteAdmin"] = successfullAdded;
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(DeleteAdmin));
         }
 
     }

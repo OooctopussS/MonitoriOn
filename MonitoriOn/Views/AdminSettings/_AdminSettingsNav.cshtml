@@ -1,0 +1,6 @@
+﻿@using MonitoriOn.Views.AdminSettings;
+
+<ul class="nav">
+    <li class="nav-item"><a class="nav-item-link @AdminSettingsNavPages.SetAdminNavClass(ViewContext)" asp-controller="AdminSettings" asp-action="SetAdmin">Добавить роль админа пользователю</a></li>
+    <li class="nav-item"><a class="nav-item-link @AdminSettingsNavPages.DeleteAdminNavClass(ViewContext)" asp-controller="AdminSettings" asp-action="DeleteAdmin">Удалить роль админа у пользователя</a></li>
+</ul>

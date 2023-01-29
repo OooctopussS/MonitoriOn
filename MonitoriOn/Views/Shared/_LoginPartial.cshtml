@@ -10,6 +10,12 @@
          <li>
             <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Профиль</a>
         </li>
+        <li>
+            <a>Доставки</a>
+        </li>
+        <li>
+            <a>Покупки</a>
+        </li>
          <li>
             <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button id="logout" type="submit">Выйти</button>

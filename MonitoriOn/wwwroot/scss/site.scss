@@ -192,6 +192,20 @@ main {
     border-color: #afafaf;
 }
 
+.btn-success {
+    cursor: pointer;
+    background-color: transparent;
+    padding: 10px 40px;
+    border: 1px solid #009900;
+    font-size: 18px;
+    color: #009900;
+}
+
+.btn-success:hover {
+    color: #008800;
+    border-color: #008800;
+}
+
 .btn-danger {
     cursor: pointer;
     background-color: transparent;
@@ -202,6 +216,6 @@ main {
 }
 
 .btn-danger:hover {
-    color: #660000;
-    border-color: #660000;
+    color: #880000;
+    border-color: #880000;
 }

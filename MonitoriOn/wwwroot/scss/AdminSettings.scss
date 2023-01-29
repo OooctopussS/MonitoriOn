@@ -1,46 +1,75 @@
-﻿.adminSettings {
+﻿.adminSettings-main {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-template-columns: 0.3fr 0.7fr;
     justify-items: center;
+    grid-column-gap: 20px;
 
-    &-addAdmin, &-deleteAdmin{
-        display: none;
-        margin-top: 40px;
-
-        .form-adminSettings {
+    &-navBlock {
+        .nav {
             display: grid;
             grid-template-columns: 1fr;
-            grid-row-gap: 20px;
+            list-style-type: none;
+            grid-row-gap: 40px;
 
-            input:not([type=submit]){
-                background-color: transparent;
-                display: inherit;
-                width: 100%;
-                border: 2px solid white;
-                padding: 10px;
-                margin: 10px 0;
-                font-size: 16px;
-                color: white;
-            }
-
-            .btn-green {
-                color: #007700;
-                border-color: #007700;
-            }
-
-            .btn-green:hover {
-                color: #005500;
-                border-color: #005500;
-            }
-
-            label{
-                font-size: 18px;
-            }
-
-            span {
-                color: #bb9900;
+            &-item {
+                &-link {
+                    display: block;
+                    padding: 15px;
+                    font-size: 18px;
+                    color: #dddddd;
+                    background-color: transparent;
+                    border: 2px solid #dddddd;
+                }
             }
         }
     }
+
+    &-body {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        justify-items: center;
+        grid-row-gap: 40px;
+
+        .body-header {
+            font-size: 28px;
+            border-bottom: 1px solid white;
+
+        }
+
+        .adminSettings-form {
+            width: 40%;
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            grid-row-gap: 10px;
+
+            label {
+                font-size: 18px;
+            }
+
+            input[type=email] {
+                display: block;
+                padding: 15px;
+                font-size: 18px;
+                color: #dddddd;
+                background-color: transparent;
+                border: 2px solid #dddddd;
+            }
+
+            span {
+                font-size: 16px;
+                color: #17a2b8;
+            }
+
+            input[type=submit] {
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+.active {
+    color: #afafaf !important;
+    border-color: #afafaf !important;
 }

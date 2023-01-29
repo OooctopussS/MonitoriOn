@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Панель настроек";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/AdminSettings.min.css" />
+}
+
+<div class="adminSettings-main">
+    <div class="adminSettings-main-navBlock">
+        <partial name="_AdminSettingsNav" />
+    </div>
+    <div class="adminSettings-main-body">
+        @RenderBody()
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

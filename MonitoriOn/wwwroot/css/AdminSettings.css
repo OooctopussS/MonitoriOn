@@ -1,39 +1,61 @@
-﻿.adminSettings {
+﻿.adminSettings-main {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  grid-template-columns: 0.3fr 0.7fr;
   justify-items: center;
+  grid-column-gap: 20px;
 }
-.adminSettings-addAdmin, .adminSettings-deleteAdmin {
-  display: none;
-  margin-top: 40px;
-}
-.adminSettings-addAdmin .form-adminSettings, .adminSettings-deleteAdmin .form-adminSettings {
+.adminSettings-main-navBlock .nav {
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: 20px;
+  list-style-type: none;
+  grid-row-gap: 40px;
 }
-.adminSettings-addAdmin .form-adminSettings input:not([type=submit]), .adminSettings-deleteAdmin .form-adminSettings input:not([type=submit]) {
+.adminSettings-main-navBlock .nav-item-link {
+  display: block;
+  padding: 15px;
+  font-size: 18px;
+  color: #dddddd;
   background-color: transparent;
-  display: inherit;
+  border: 2px solid #dddddd;
+}
+.adminSettings-main-body {
+  display: grid;
+  grid-template-columns: 1fr;
   width: 100%;
-  border: 2px solid white;
-  padding: 10px;
-  margin: 10px 0;
-  font-size: 16px;
-  color: white;
+  justify-items: center;
+  grid-row-gap: 40px;
 }
-.adminSettings-addAdmin .form-adminSettings .btn-green, .adminSettings-deleteAdmin .form-adminSettings .btn-green {
-  color: #007700;
-  border-color: #007700;
+.adminSettings-main-body .body-header {
+  font-size: 28px;
+  border-bottom: 1px solid white;
 }
-.adminSettings-addAdmin .form-adminSettings .btn-green:hover, .adminSettings-deleteAdmin .form-adminSettings .btn-green:hover {
-  color: #005500;
-  border-color: #005500;
+.adminSettings-main-body .adminSettings-form {
+  width: 40%;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  grid-row-gap: 10px;
 }
-.adminSettings-addAdmin .form-adminSettings label, .adminSettings-deleteAdmin .form-adminSettings label {
+.adminSettings-main-body .adminSettings-form label {
   font-size: 18px;
 }
-.adminSettings-addAdmin .form-adminSettings span, .adminSettings-deleteAdmin .form-adminSettings span {
-  color: #bb9900;
+.adminSettings-main-body .adminSettings-form input[type=email] {
+  display: block;
+  padding: 15px;
+  font-size: 18px;
+  color: #dddddd;
+  background-color: transparent;
+  border: 2px solid #dddddd;
+}
+.adminSettings-main-body .adminSettings-form span {
+  font-size: 16px;
+  color: #17a2b8;
+}
+.adminSettings-main-body .adminSettings-form input[type=submit] {
+  margin-top: 20px;
+}
+
+.active {
+  color: #afafaf !important;
+  border-color: #afafaf !important;
 }

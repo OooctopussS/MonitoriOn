@@ -1,4 +1,12 @@
-﻿<form asp-action="DeleteAdmin" method="post" class="form-adminSettings">
+﻿@using MonitoriOn.Views.AdminSettings;
+
+@{
+    ViewData["AdminSettingsActivePage"] = AdminSettingsNavPages.DeleteAdmin;
+    Layout = "~/Views/AdminSettings/_Layout.cshtml";
+}
+
+<h2 class="body-header">Удаление админа</h2>
+<form asp-action="DeleteAdmin" method="post" class="adminSettings-form">
     <label for="name">Введите почту пользователя:</label>
     <input name="name" type="email" placeholder="Введите почту" autocomplete="off">
     @if (TempData["DeleteAdmin"] != null)

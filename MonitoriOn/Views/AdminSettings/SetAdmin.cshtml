@@ -1,10 +1,18 @@
-﻿<form asp-action="SetAdmin" method="post" class="form-adminSettings">
+﻿@using MonitoriOn.Views.AdminSettings;
+
+@{
+    ViewData["AdminSettingsActivePage"] = AdminSettingsNavPages.SetAdmin;
+    Layout = "~/Views/AdminSettings/_Layout.cshtml";
+}
+
+<h2 class="body-header">Добавление админа</h2>
+<form asp-action="SetAdmin" method="post" class="adminSettings-form">
     <label for="name">Введите почту пользователя:</label>
     <input name="name" type="email" placeholder="Введите почту" autocomplete="off">
     @if (TempData["SetAdmin"] != null)
     {
         <span>@TempData["SetAdmin"]</span>
     }
-    <input class="btn-default btn-green" type="submit" value="Добавить админа" />
+    <input class="btn-success" type="submit" value="Добавить админа" />
 </form>
 
