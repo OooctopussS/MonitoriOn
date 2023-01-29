@@ -1,0 +1,9 @@
+﻿<form asp-action="DeleteAdmin" method="post" class="form-adminSettings">
+    <label for="name">Введите почту пользователя:</label>
+    <input name="name" type="email" placeholder="Введите почту" autocomplete="off">
+    @if (TempData["DeleteAdmin"] != null)
+    {
+        <span>@TempData["DeleteAdmin"]</span>
+    }
+    <input class="btn-danger" type="submit" value="Удалить админа" />
+</form>

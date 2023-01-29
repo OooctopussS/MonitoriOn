@@ -23,7 +23,7 @@
   margin-top: 10px;
 }
 .login .form-forgotPassword a, .register .form-forgotPassword a {
-  color: lightgray;
+  color: #bbbbbb;
 }
 
 .form-login label, .form-register label {

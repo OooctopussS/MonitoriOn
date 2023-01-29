@@ -1,0 +1,46 @@
+﻿.adminSettings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    justify-items: center;
+
+    &-addAdmin, &-deleteAdmin{
+        display: none;
+        margin-top: 40px;
+
+        .form-adminSettings {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-row-gap: 20px;
+
+            input:not([type=submit]){
+                background-color: transparent;
+                display: inherit;
+                width: 100%;
+                border: 2px solid white;
+                padding: 10px;
+                margin: 10px 0;
+                font-size: 16px;
+                color: white;
+            }
+
+            .btn-green {
+                color: #007700;
+                border-color: #007700;
+            }
+
+            .btn-green:hover {
+                color: #005500;
+                border-color: #005500;
+            }
+
+            label{
+                font-size: 18px;
+            }
+
+            span {
+                color: #bb9900;
+            }
+        }
+    }
+}

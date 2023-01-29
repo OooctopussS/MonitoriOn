@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Панель настроек";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head_Link
+ {
+    <link rel="stylesheet" href="~/css/AdminSettings.min.css" />
+}
+
+<div class="adminSettings">
+
+    <div>
+        <button id="addAdmin-btn" class="btn-default">Добавить роль админа пользователю</button>
+        <div class="adminSettings-addAdmin">
+            @await Html.PartialAsync("SetAdmin")
+        </div>
+    </div>
+
+    <div>
+        <button id="deleteAdmin-btn" class="btn-default">Удалить роль админа у пользователя</button>
+        <div class="adminSettings-deleteAdmin">
+            @await Html.PartialAsync("DeleteAdmin")
+        </div>
+    </div>
+
+    <!--Список пользователей с поиском-->
+    <div></div>
+
+</div>
+
+@section Scripts
+{
+    <script>
+        var blockId = @TempData["OpenBlock"];
+
+        if (blockId == 1)
+        {
+            document.getElementsByClassName('adminSettings-addAdmin')[0].classList.toggle('show');
+        }
+
+        if (blockId == 2)
+        {
+            document.getElementsByClassName('adminSettings-deleteAdmin')[0].classList.toggle('show');
+        }
+
+        document.getElementById('addAdmin-btn').addEventListener('click', function()
+        {
+            var addAdminBlock = document.getElementsByClassName('adminSettings-addAdmin')[0];
+            if (addAdminBlock.classList.contains('show'))
+            {
+                addAdminBlock.classList.remove('show');
+            }
+            else
+            {
+                addAdminBlock.classList.add('show');
+            }
+        });
+
+        document.getElementById('deleteAdmin-btn').addEventListener('click', function()
+        {
+            var deleteAdminBlock = document.getElementsByClassName('adminSettings-deleteAdmin')[0];
+            if (deleteAdminBlock.classList.contains('show')) 
+            {
+                deleteAdminBlock.classList.remove('show');
+            }
+            else
+            {
+                deleteAdminBlock.classList.add('show');
+            }
+        });
+    </script>
+}
+

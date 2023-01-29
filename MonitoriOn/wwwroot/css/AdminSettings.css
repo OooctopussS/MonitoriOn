@@ -1,0 +1,39 @@
+﻿.adminSettings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  justify-items: center;
+}
+.adminSettings-addAdmin, .adminSettings-deleteAdmin {
+  display: none;
+  margin-top: 40px;
+}
+.adminSettings-addAdmin .form-adminSettings, .adminSettings-deleteAdmin .form-adminSettings {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+}
+.adminSettings-addAdmin .form-adminSettings input:not([type=submit]), .adminSettings-deleteAdmin .form-adminSettings input:not([type=submit]) {
+  background-color: transparent;
+  display: inherit;
+  width: 100%;
+  border: 2px solid white;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  color: white;
+}
+.adminSettings-addAdmin .form-adminSettings .btn-green, .adminSettings-deleteAdmin .form-adminSettings .btn-green {
+  color: #007700;
+  border-color: #007700;
+}
+.adminSettings-addAdmin .form-adminSettings .btn-green:hover, .adminSettings-deleteAdmin .form-adminSettings .btn-green:hover {
+  color: #005500;
+  border-color: #005500;
+}
+.adminSettings-addAdmin .form-adminSettings label, .adminSettings-deleteAdmin .form-adminSettings label {
+  font-size: 18px;
+}
+.adminSettings-addAdmin .form-adminSettings span, .adminSettings-deleteAdmin .form-adminSettings span {
+  color: #bb9900;
+}

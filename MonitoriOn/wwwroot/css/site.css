@@ -118,6 +118,17 @@ main {
 .header-row-rightSide .panel-dropdown li a {
   color: #dfdfdf;
 }
+.header-row-rightSide .panel-dropdown .li-adminSettings {
+  padding-top: 10px;
+  border-top: 1px solid #aaaaaa;
+}
+.header-row-rightSide .panel-dropdown button {
+  text-decoration: none;
+  color: #dfdfdf;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+}
 .header-row-rightSide-cartPanel {
   justify-self: start;
   display: grid;

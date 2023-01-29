@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MonitoriOn - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MonitoriOn.styles.css" asp-append-version="true" />
     @RenderSection("head_Link", required: false)
 </head>
 <body>
@@ -37,6 +36,9 @@
                             </li>
                             <li>
                                 <a asp-controller="Monitor" asp-action="Index">Мониторы</a>
+                            </li>
+                            <li class="li-adminSettings">
+                                <a asp-controller="AdminSettings" asp-action="Index">Настройки пользователей</a>
                             </li>
                         </ul>
                     </div>
