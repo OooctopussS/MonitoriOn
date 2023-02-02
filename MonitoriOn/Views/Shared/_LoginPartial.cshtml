@@ -16,18 +16,18 @@
             <a>Покупки</a>
         </li>
          <li>
-            <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button id="logout" type="submit">Выйти</button>
+            <form asp-action="LogOut" asp-controller="Profile">
+                <button type="submit">Выйти</button>
             </form>
         </li>
     }
     else
     {
         <li>
-            <a id="login" asp-area="Identity" asp-page="/Account/Login">Войти</a>
+            <a asp-action="Login" asp-controller="Account">Войти</a>
         </li>
         <li>
-            <a id="register" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+            <a asp-action="Register" asp-controller="Account">Регистрация</a>
         </li>
     }
 </ul>

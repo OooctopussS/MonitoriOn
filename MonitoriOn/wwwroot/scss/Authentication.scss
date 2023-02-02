@@ -15,9 +15,7 @@
 
         .validationLogin, .validationRegister {
             ul {
-                li::marker {
-                    content: '';
-                }
+                list-style-type: none;
             }
         }
 

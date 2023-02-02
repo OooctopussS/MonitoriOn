@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MonitoriOn.Data;
 using MonitoriOn.Models;
@@ -19,10 +20,20 @@ builder.Services.AddSession(Options => {
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
 
+//builder.Services.AddScoped<SignInManager<MonitoriOnUser>>();
+//builder.Services.AddScoped<UserManager<MonitoriOnUser>>();
+//builder.Services.AddScoped<UserStore<MonitoriOnUser>>();
+//builder.Services.AddScoped<RoleManager<MonitoriOnUser>>();
+
 //builder.Services.AddIdentity<MonitoriOnUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
 builder.Services.AddIdentity<MonitoriOnUser, IdentityRole>()
     .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+    //.AddSignInManager<SignInManager<MonitoriOnUser>>()
+    //.AddUserManager<UserManager<MonitoriOnUser>>()
+    //.AddUserStore<UserStore<MonitoriOnUser>>()
+    //.AddRoleManager<RoleManager<IdentityRole>>();
+    
 
 builder.Services.Configure<IdentityOptions>(options =>
 {

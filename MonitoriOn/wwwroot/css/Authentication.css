@@ -12,8 +12,8 @@
   grid-template-columns: 1fr;
   grid-row-gap: 20px;
 }
-.login .form-login .validationLogin ul li::marker, .login .form-login .validationRegister ul li::marker, .login .form-register .validationLogin ul li::marker, .login .form-register .validationRegister ul li::marker, .register .form-login .validationLogin ul li::marker, .register .form-login .validationRegister ul li::marker, .register .form-register .validationLogin ul li::marker, .register .form-register .validationRegister ul li::marker {
-  content: "";
+.login .form-login .validationLogin ul, .login .form-login .validationRegister ul, .login .form-register .validationLogin ul, .login .form-register .validationRegister ul, .register .form-login .validationLogin ul, .register .form-login .validationRegister ul, .register .form-register .validationLogin ul, .register .form-register .validationRegister ul {
+  list-style-type: none;
 }
 .login .form-login .form-check-input, .login .form-register .form-check-input, .register .form-login .form-check-input, .register .form-register .form-check-input {
   margin-left: 10px;

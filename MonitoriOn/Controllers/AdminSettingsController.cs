@@ -53,6 +53,7 @@ namespace MonitoriOn.Controllers
                 if (!await _userManager.IsInRoleAsync(user, WC.AdminRole))
                 {
                     await _userManager.AddToRoleAsync(user, WC.AdminRole);
+                    await _userManager.UpdateAsync(user);
                 }
                 else
                 {
@@ -109,6 +110,7 @@ namespace MonitoriOn.Controllers
                 if (await _userManager.IsInRoleAsync(user, WC.AdminRole))
                 {
                     await _userManager.RemoveFromRoleAsync(user, WC.AdminRole);
+                    await _userManager.UpdateAsync(user);
                 }
                 else
                 {

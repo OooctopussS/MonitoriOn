@@ -257,5 +257,15 @@ namespace MonitoriOn.Controllers
 
             return View(nameof(Index), newUser);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("LogOut")]
+        public async Task<IActionResult> LogOutPost()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

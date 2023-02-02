@@ -1,12 +1,13 @@
 ﻿#nullable disable
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MonitoriOn.Models;
 
 namespace MonitoriOn.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<MonitoriOnUser>
     {
         public DbSet<Models.Monitor> Monitors { get; set; }
         public DbSet<Brand> Brands { get; set; }
