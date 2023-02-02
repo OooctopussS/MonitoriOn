@@ -35,7 +35,6 @@ namespace MonitoriOn.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var user = Activator.CreateInstance<MonitoriOnUser>();
                 var user = new MonitoriOnUser
                 {
                     FirstName = registerUserVM.FirstName,
@@ -43,12 +42,6 @@ namespace MonitoriOn.Controllers
                     PhoneNumber = registerUserVM.PhoneNumber,
                     UserName = registerUserVM.Email
                 };
-
-                //user.FirstName = registerUserVM.FirstName;
-
-                //await _userStore.SetUserNameAsync(user, registerUserVM.Email, CancellationToken.None);
-                //await _emailStore.SetEmailAsync(user, registerUserVM.Email, CancellationToken.None);
-                //await _phoneNumberStore.SetPhoneNumberAsync(user, registerUserVM.PhoneNumber, CancellationToken.None);
 
                 var result = await _userManager.CreateAsync(user, registerUserVM.Password);
 
@@ -71,7 +64,36 @@ namespace MonitoriOn.Controllers
 
             }
 
-            return View(registerUserVM);
+            return View();
+        }
+
+        // GET - Login
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Login")]
+        public async Task<IActionResult> LoginPost(LoginUserVM loginUserVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(loginUserVM.Email, loginUserVM.Password, loginUserVM.RememberMe, lockoutOnFailure: false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError(string.Empty, "Неверный логин или пароль");
+
+                return View();
+
+            }
+
+            return View();
         }
 
     }

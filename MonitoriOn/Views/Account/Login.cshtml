@@ -1,0 +1,58 @@
+﻿@model MonitoriOn.Models.ViewModels.LoginUserVM
+
+@{
+    ViewData["Title"] = "Авторизация";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Authentication.min.css" />
+}
+
+<div class="login">
+    <h1>@ViewData["Title"]</h1>
+
+    <div class="login-enter">
+        <section>
+            <form id="account" class="form-login" method="post">
+
+                <div>
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" autocomplete="off" placeholder="Введите почту" aria-required="true" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" autocomplete="off" placeholder="Введите пароль" aria-required="true" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <div>
+                        <label asp-for="RememberMe">
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                            <input class="form-check-input" asp-for="RememberMe" />
+                        </label>
+                    </div>
+                </div>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger validationLogin"></div>
+
+                <button type="submit" class="btn-success">Войти</button>
+
+                <div class="form-forgotPassword">
+                    <a >Забыл пароль?</a>
+                </div>
+
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
