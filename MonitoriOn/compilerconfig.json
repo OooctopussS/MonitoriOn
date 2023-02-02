@@ -22,5 +22,9 @@
   {
     "outputFile": "wwwroot/css/AdminSettings.css",
     "inputFile": "wwwroot/scss/AdminSettings.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Profile.css",
+    "inputFile": "wwwroot/scss/Profile.scss"
   }
 ]

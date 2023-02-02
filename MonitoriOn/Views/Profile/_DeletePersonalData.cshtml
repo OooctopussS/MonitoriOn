@@ -1,0 +1,41 @@
+﻿@{
+    string? className;
+    if (TempData["IncorrectPassword"]?.ToString() == "true")
+    {
+        className = "open";
+    }
+    else
+    {
+        className = null;
+    }
+}
+
+
+<div class="modal @className" onclick="closeModalDark()">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-content-header">
+                <h2>Удаление аккаунта</h2>
+                <p>Удаление этих данных приведет к безвозвратному удалению вашей учетной записи.<br />Восстановить ее будет <span>невозможно</span>.</p>
+                <button class="btn-modal-close" onclick="closeModalBtn()">
+                    <img src="~/img/profile/modal/close.svg" />
+                </button>
+            </div>
+            <div class="modal-content-body">
+                <form asp-page-handler="DeletePersonalData">
+                    <div class="textBlock">
+                        <label>Введите пароль</label>
+                        <input name="password" type="password" autocomplete="off" />
+                        @if (TempData["DeleteUser"] != null)
+                        {
+                            <span class="span-validation">@TempData["DeleteUser"]</span>
+                        }
+                    </div>
+                    <div class="btnBlock">
+                        <button class="btn-danger">Удалить аккаунт</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MonitoriOn.Data;
+using MonitoriOn.Models;
 
 namespace MonitoriOn.Controllers
 {
     public class AdminSettingsController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<MonitoriOnUser> _userManager;
 
-        public AdminSettingsController(UserManager<IdentityUser> userManager)
+        public AdminSettingsController(UserManager<MonitoriOnUser> userManager)
         {
             _userManager = userManager;
         }

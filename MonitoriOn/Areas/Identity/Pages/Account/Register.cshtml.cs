@@ -15,19 +15,19 @@ namespace MonitoriOn.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserStore<IdentityUser> _userStore;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
-        private readonly IUserPhoneNumberStore<IdentityUser> _phoneNumberStore;
+        private readonly SignInManager<MonitoriOnUser> _signInManager;
+        private readonly UserManager<MonitoriOnUser> _userManager;
+        private readonly IUserStore<MonitoriOnUser> _userStore;
+        private readonly IUserEmailStore<MonitoriOnUser> _emailStore;
+        private readonly IUserPhoneNumberStore<MonitoriOnUser> _phoneNumberStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            IUserStore<IdentityUser> userStore,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<MonitoriOnUser> userManager,
+            IUserStore<MonitoriOnUser> userStore,
+            SignInManager<MonitoriOnUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             RoleManager<IdentityRole> roleManager)
@@ -157,22 +157,22 @@ namespace MonitoriOn.Areas.Identity.Pages.Account
             }
         }
 
-        private IUserEmailStore<IdentityUser> GetEmailStore()
+        private IUserEmailStore<MonitoriOnUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<IdentityUser>)_userStore;
+            return (IUserEmailStore<MonitoriOnUser>)_userStore;
         }
 
-        private IUserPhoneNumberStore<IdentityUser> GetPhoneNumberStore()
+        private IUserPhoneNumberStore<MonitoriOnUser> GetPhoneNumberStore()
         {
             if (!_userManager.SupportsUserPhoneNumber)
             {
                 throw new NotSupportedException("The default UI requires a user store with phone number support.");
             }
-            return (IUserPhoneNumberStore<IdentityUser>)_userStore;
+            return (IUserPhoneNumberStore<MonitoriOnUser>)_userStore;
         } 
     }
 }

@@ -1,0 +1,123 @@
+﻿@using MonitoriOn.Models.ViewModels;
+@model MonitoriOn.Models.ViewModels.UserVM
+
+@{
+    ViewData["Title"] = "Профиль";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head_Link
+    {
+    <link rel="stylesheet" href="~/css/Profile.min.css" />
+}
+
+<div id="modal-placeholder">
+    @if (TempData["ChangeName"]?.ToString() == "true")
+    {
+        <partial name="_ChangeName" model="@new UserVM()" />
+    }
+    @if (TempData["ChangePhoneNumber"]?.ToString() == "true")
+    {
+        <partial name="_ChangePhoneNumber" model="@new UserVM()" />
+    }
+    @if (TempData["ChangePassword"]?.ToString() == "true")
+    {
+        <partial name="_ChangePassword" model="@new ChangePasswordVM()" />
+    }
+    @if (TempData["IncorrectPassword"]?.ToString() == "true")
+    {
+        <partial name="_DeletePersonalData" />
+    }
+</div>
+
+<div class="profile">
+
+    <div class="profile-info">
+
+        <div class="profile-info-header">
+            <h2>@Model.FirstName</h2>
+            <a data-toggle="ajax-modal" asp-action="ChangeName" asp-controller="Profile">
+                <img src="~/img/profile/edit.svg" />
+            </a>
+        </div>
+
+        <div class="profile-info-body">
+
+            <div class="info-block">
+                <div class="info-block-text">
+                    <span>@Html.DisplayNameFor(x => x.Email)</span>
+                    <span>@Model.Email</span>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <div class="info-block-text">
+                    <span>@Html.DisplayNameFor(x => x.PhoneNumber)</span>
+                    <span>@Model.PhoneNumber</span>
+                </div>
+                <div class="info-block-link">
+                    <a data-toggle="ajax-modal" asp-action="ChangePhoneNumber" asp-controller="Profile">
+                        <img src="~/img/profile/edit.svg" />
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="profile-changePassword">
+        <h2>Изменение пароля</h2>
+        <span>После изменения пароля старый пароль будет недействителен</span>
+        <div>
+            <a data-toggle="ajax-modal" asp-action="ChangePassword" asp-controller="Profile">Изменить пароль</a>
+        </div>
+    </div>
+
+    <div class="profile-delete">
+        <h2>Удаление аккаунта</h2>
+        <span>Вместе с аккаунтом все ваши данные будут удалены</span>
+        <div>
+            <a data-toggle="ajax-modal" asp-action="DeletePersonalData" asp-controller="Profile">Удалить аккаунт</a>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(function () {
+            var placeholderElement = $('#modal-placeholder');
+
+            $.ajaxSetup({ cache: false });
+
+            $('a[data-toggle="ajax-modal"]').click(function (e) {
+ 
+                e.preventDefault();
+
+                $.get(this.href, function (data) {
+                    console.log(this.href);
+                    placeholderElement.html(data);
+                    placeholderElement.find('.modal').addClass('open');
+                });
+            });
+
+        })
+
+        function closeModalBtn() {
+            $('.modal').removeClass('open');
+            $('#modal-placeholder').empty();
+        }
+
+        function closeModalDark() {
+            if (!event.target.closest('.modal-content')) {
+                $('.modal').removeClass('open');
+                $('#modal-placeholder').empty();
+            }
+        }
+
+
+    </script>
+}
+

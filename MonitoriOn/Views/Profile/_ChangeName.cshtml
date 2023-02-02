@@ -1,0 +1,38 @@
+﻿@model MonitoriOn.Models.ViewModels.UserVM
+
+@{
+    string? className;
+    if (TempData["ChangeName"]?.ToString() == "true")
+    {
+        className = "open";
+    }
+    else
+    {
+        className = null;
+    }
+}
+
+<div class="modal @className" onclick="closeModalDark()">
+    <div class="modal-dialog">
+        <div class="modal-content modal-content-expand">
+            <div class="modal-content-header">
+                <h2>Изменение имени</h2>
+                <button class="btn-modal-close" onclick="closeModalBtn()">
+                    <img src="~/img/profile/modal/close.svg" />
+                </button>
+            </div>
+            <div class="modal-content-body">
+                <form asp-page-handler="ChangeName">
+                    <div class="textBlock">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName"  autocomplete="off" placeholder="Введите имя" />
+                        <span asp-validation-for="FirstName"></span>
+                    </div>
+                    <div class="btnBlock">
+                        <button class="btn-success">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
