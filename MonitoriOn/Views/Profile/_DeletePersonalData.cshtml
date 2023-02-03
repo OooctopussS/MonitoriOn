@@ -26,10 +26,7 @@
                     <div class="textBlock">
                         <label>Введите пароль</label>
                         <input name="password" type="password" autocomplete="off" />
-                        @if (TempData["DeleteUser"] != null)
-                        {
-                            <span class="span-validation">@TempData["DeleteUser"]</span>
-                        }
+                        <span class="span-validation">@TempData["DeleteUser"]</span>
                     </div>
                     <div class="btnBlock">
                         <button class="btn-danger">Удалить аккаунт</button>

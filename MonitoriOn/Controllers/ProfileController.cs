@@ -33,8 +33,6 @@ namespace MonitoriOn.Controllers
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(user)
             };
 
-            var str = TempData["IncorrectPassword"];
-
             return View(newUser);
         }
 
@@ -170,6 +168,7 @@ namespace MonitoriOn.Controllers
 
                 return View(nameof(Index), newUser);
             }
+
             TempData["ChangeName"] = "false";
 
             if (user == null)
@@ -183,12 +182,15 @@ namespace MonitoriOn.Controllers
             {
                 return View(nameof(Index), newUser);
             }
+            
+            if (userVM.FirstName != null)
+            {
+                user.FirstName = userVM.FirstName;
 
-            user.FirstName = userVM.FirstName;
+                newUser.FirstName = userVM.FirstName;
 
-            newUser.FirstName = userVM.FirstName;
-
-            await _userManager.UpdateAsync(user);
+                await _userManager.UpdateAsync(user);
+            }
 
             return View(nameof(Index), newUser);
         }
