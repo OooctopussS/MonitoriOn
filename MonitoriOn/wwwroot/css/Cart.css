@@ -1,0 +1,110 @@
+﻿.cart-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background-color: #151515;
+  padding: 20px 40px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.cart-header h2 {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+.cart-header .continueShopping {
+  justify-self: end;
+  font-size: 24px;
+  font-weight: 800;
+}
+.cart-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+  padding: 40px 40px;
+}
+.cart-body .selectAll {
+  display: grid;
+  grid-template-columns: 0.2fr 0.6fr 2fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+.cart-body .selectAll input {
+  width: 18px;
+  height: 18px;
+}
+.cart-body .selectAll p {
+  font-size: 22px;
+}
+.cart-body .cart-items-body {
+  padding-bottom: 20px;
+}
+.cart-body .cart-items-body .cart-item {
+  display: grid;
+  grid-template-columns: 0.2fr 0.6fr 2fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  padding-bottom: 20px;
+}
+.cart-body .cart-items-body .cart-item-needToBuy input {
+  width: 18px;
+  height: 18px;
+}
+.cart-body .cart-items-body .cart-item-img {
+  width: 128px;
+  height: 128px;
+}
+.cart-body .cart-items-body .cart-item-img img {
+  width: 100%;
+}
+.cart-body .cart-items-body .cart-item-title {
+  justify-self: start;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+}
+.cart-body .cart-items-body .cart-item-title h4 {
+  font-size: 24px;
+}
+.cart-body .cart-items-body .cart-item-price {
+  font-size: 18px;
+}
+.cart-body .cart-items-body .cart-item-delete {
+  font-size: 18px;
+}
+.cart-body .cart-items-body .cart-item:not(:last-child) {
+  border-bottom: 1px solid #ffffff;
+}
+.cart-body .cart-items-body .cart-item:not(:first-child) {
+  margin-top: 20px;
+}
+.cart-body .cart-empty {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 30px;
+}
+.cart-body .cart-empty h3 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+.cart-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background-color: #151515;
+  padding: 20px 40px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.cart-footer p {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+.cart-footer .orderLink {
+  justify-self: end;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}

@@ -1,0 +1,88 @@
+﻿@model List<MonitoriOn.Models.ViewModels.CartVM>
+
+@{
+    ViewData["Title"] = "Корзина";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Cart.min.css" />
+}
+
+@{
+    decimal totalSum = 0;
+
+    if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            totalSum += item.MonitorItem.Price;
+        }
+    }
+
+}
+
+<div class="cart">
+    <div class="cart-header">
+        <h2>Корзина</h2>
+        <div class="continueShopping">
+            <a class="btn-default" asp-action="Index" asp-controller="Home">Продолжить покупки</a>
+        </div>
+    </div>
+    <div class="cart-body">
+        @if (Model != null && Model.Count() > 0)
+        {
+            <div class="selectAll">
+               <input type="checkbox" checked/>
+               <p>Выделить всё</p>
+            </div>
+            <form method="post">
+                <div class="cart-items">
+                    <div class="cart-items-body">
+                        @foreach (var item in Model)
+                        {
+                            <div class="cart-item">
+                                <div class="cart-item-needToBuy">
+                                    <input type="checkbox" asp-for="@item.NeedToBuy" checked/>
+                                </div>
+                                <div class="cart-item-img">
+                                    <img src="@WC.ImagePath@item.MonitorItem.Image" />
+                                </div>
+                                <div class="cart-item-title">
+                                    <h4>@item.MonitorItem.Name</h4>
+                                    <p>@item.MonitorItem.Brand!.Name, @item.MonitorItem.DisplayResolution!.Name, @item.MonitorItem.FrameUpdate!.Name</p>
+                                </div>
+                                <div class="cart-item-price">
+                                    <span>@item.MonitorItem.Price.ToString("C0")</span>
+                                </div>
+                                <div class="cart-item-delete">
+                                    <a>Удалить</a> <!--Иконку мусорки-->
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="cart-empty">
+                <h3>Ваша корзина еще пуста</h3>
+                <div>
+                    <a class="btn-success" asp-action="Index" asp-controller="Home">Перейти на главную</a>
+                </div>
+            </div>
+        }
+    </div>
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="cart-footer">
+            <p>Общая сумма: @totalSum.ToString("C0")</p>
+            <div class="orderLink">
+                <a class="btn-success">Заказать</a>
+            </div>
+        </div>
+    }
+</div>

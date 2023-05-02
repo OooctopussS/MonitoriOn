@@ -12,9 +12,8 @@ namespace MonitoriOn.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SignInManager<MonitoriOnUser> _signInManager;
         private readonly UserManager<MonitoriOnUser> _userManager;
-
+        private readonly SignInManager<MonitoriOnUser> _signInManager;
 
         public AccountController(
             SignInManager<MonitoriOnUser> signInManager,

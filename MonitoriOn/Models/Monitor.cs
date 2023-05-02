@@ -7,6 +7,7 @@ namespace MonitoriOn.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Укажите название Монитора")]
         [Display(Name = "Название Монитора")]
         public string Name { get; set; } = null!;

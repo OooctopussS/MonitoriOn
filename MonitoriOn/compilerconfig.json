@@ -26,5 +26,9 @@
   {
     "outputFile": "wwwroot/css/Profile.css",
     "inputFile": "wwwroot/scss/Profile.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Cart.css",
+    "inputFile": "wwwroot/scss/Cart.scss"
   }
 ]

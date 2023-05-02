@@ -33,11 +33,11 @@ namespace MonitoriOn.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("SetAdmin")]
-        public async Task<IActionResult> SetAdminPost(string name)
+        public async Task<IActionResult> SetAdminPost(string email)
         {
             TempData["OpenBlock"] = 1;
 
-            if (name == null)
+            if (email == null)
             {
                 string notFound = "Пользователь с такой почтой не найден";
 
@@ -46,7 +46,7 @@ namespace MonitoriOn.Controllers
                 return RedirectToAction(nameof(SetAdmin));
             }
 
-            var user = await _userManager.FindByNameAsync(name);
+            var user = await _userManager.FindByNameAsync(email);
 
             if (user != null)
             {
@@ -90,11 +90,11 @@ namespace MonitoriOn.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("DeleteAdmin")]
-        public async Task<IActionResult> DeleteAdminPost(string name)
+        public async Task<IActionResult> DeleteAdminPost(string email)
         {
             TempData["OpenBlock"] = 2;
 
-            if (name == null)
+            if (email == null)
             {
                 string notFound = "Пользователь с такой почтой не найден";
 
@@ -103,7 +103,7 @@ namespace MonitoriOn.Controllers
                 return RedirectToAction(nameof(DeleteAdmin));
             }
 
-            var user = await _userManager.FindByNameAsync(name);
+            var user = await _userManager.FindByNameAsync(email);
 
             if (user != null)
             {
