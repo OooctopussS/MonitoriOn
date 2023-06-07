@@ -1,0 +1,69 @@
+﻿@model MonitoriOn.Models.Monitor
+@using MonitoriOn.Common;
+
+@using (Html.BeginCollectionItem("Monitors"))
+{
+<div class="dogovorItem-Container-item">
+    <div class="form-body-group">
+        <div class="form-body-group-label">
+            <label asp-for="Name"></label>
+        </div>
+        <div class="form-body-group-main">
+            <input asp-for="Name" autocomplete="off" />
+            <span asp-validation-for="Name"></span>
+        </div>
+    </div>
+    <div class="form-body-group">
+        <div class="form-body-group-label">
+            <label asp-for="Price"></label>
+        </div>
+        <div class="form-body-group-main">
+            <input asp-for="Price" autocomplete="off" />
+            <span asp-validation-for="Price"></span>
+        </div>
+    </div>
+        <div class="form-body-group">
+            <div class="form-body-group-label">
+                <label asp-for="Count"></label>
+            </div>
+            <div class="form-body-group-main">
+                <input asp-for="Count" autocomplete="off" />
+                <span asp-validation-for="Count"></span>
+            </div>
+        </div>
+    <div class="form-body-group">
+        <div class="form-body-group-label">
+            <label asp-for="Brand.Name"></label>
+        </div>
+        <div class="form-body-group-main">
+            <input asp-for="Brand.Name" autocomplete="off" />
+            <span asp-validation-for="Brand.Name"></span>
+        </div>
+    </div>
+    <div class="form-body-group">
+        <div class="form-body-group-label">
+            <label asp-for="DisplayResolution.Name"></label>
+        </div>
+        <div class="form-body-group-main">
+            <input asp-for="DisplayResolution.Name" autocomplete="off" />
+            <span asp-validation-for="DisplayResolution.Name"></span>
+        </div>
+    </div>
+    <div class="form-body-group">
+        <div class="form-body-group-label">
+            <label asp-for="FrameUpdate.Name"></label>
+        </div>
+        <div class="form-body-group-main">
+            <input asp-for="FrameUpdate.Name" autocomplete="off" />
+            <span asp-validation-for="FrameUpdate.Name"></span>
+        </div>
+    </div>
+    <div class="form-body-group" style="justify-content: end; margin-bottom: 30px; margin-top: 0px; display: flex;">
+        <div class="form-body-group-buttons-container" style="display: flex; justify-content: end;">
+            <div class="form-body-group-buttons">
+                <button type="button" onclick="deleteOrderItem(this);" class="form-body-group-buttons-button btn-default">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+}

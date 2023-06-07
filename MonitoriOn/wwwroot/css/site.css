@@ -69,6 +69,7 @@ main {
 }
 .header-row {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   padding: 10px 0;
 }
@@ -88,15 +89,14 @@ main {
   font-size: 32px;
 }
 .header-row-rightSide {
-  grid-column: 3/4;
-  display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
-}
-.header-row-rightSide-adminPanel {
-  justify-self: end;
+  display: flex;
+  justify-content: center;
 }
 .header-row-rightSide-userPanel {
-  justify-self: center;
+  margin-left: 20px;
+}
+.header-row-rightSide-userGuide {
+  margin-left: 20px;
 }
 .header-row-rightSide .panel-dropdown {
   display: none;
@@ -135,6 +135,7 @@ main {
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 8px;
   align-items: center;
+  margin-left: 20px;
 }
 .header-row-rightSide-cartPanel .red-circle {
   width: 8px;

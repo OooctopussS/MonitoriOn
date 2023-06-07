@@ -30,5 +30,9 @@
   {
     "outputFile": "wwwroot/css/Cart.css",
     "inputFile": "wwwroot/scss/Cart.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Guide.css",
+    "inputFile": "wwwroot/scss/Guide.scss"
   }
 ]

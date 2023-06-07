@@ -1,0 +1,38 @@
+﻿@model MonitoriOn.Models.ViewModels.UserVM
+
+@{
+    string? className;
+    if (TempData["ChangeAddress"]?.ToString() == "true")
+    {
+        className = "open";
+    }
+    else
+    {
+        className = null;
+    }
+}
+
+<div class="modal @className" onclick="closeModalDark()">
+    <div class="modal-dialog">
+        <div class="modal-content modal-content-expand">
+            <div class="modal-content-header">
+                <h2>Изменение адреса</h2>
+                <button class="btn-modal-close" onclick="closeModalBtn()">
+                    <img src="~/img/profile/modal/close.svg" />
+                </button>
+            </div>
+            <div class="modal-content-body">
+                <form asp-page-handler="ChangeAddress">
+                    <div class="textBlock">
+                        <label asp-for="Address"></label>
+                        <input asp-for="Address"  autocomplete="off" placeholder="Введите адрес" />
+                        <span asp-validation-for="Address"></span>
+                    </div>
+                    <div class="btnBlock">
+                        <button class="btn-success">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

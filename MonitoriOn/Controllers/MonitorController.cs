@@ -21,7 +21,7 @@ namespace MonitoriOn.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Models.Monitor> objList = _db.Monitors.Include(u => u.Brand).Include(u => u.DisplayResolution).Include(u => u.FrameUpdate);
+            IEnumerable<Models.Monitor> objList = _db.Monitors.Include(u => u.Brand).Include(u => u.DisplayResolution).Include(u => u.FrameUpdate).Where(m => m.Sost == 1);
 
             return View(objList);
         }
@@ -96,6 +96,7 @@ namespace MonitoriOn.Controllers
                     }
 
                     monitorVM.Monitor.Image = fileName + extension;
+                    monitorVM.Monitor.Sost = 1;
 
                     _db.Monitors.Add(monitorVM.Monitor);
                 }
@@ -131,6 +132,8 @@ namespace MonitoriOn.Controllers
                         {
                             monitorVM.Monitor.Image = objFromDb.Image!;
                         }
+
+                        monitorVM.Monitor.Sost = 1;
 
                         _db.Monitors.Update(monitorVM.Monitor);
                     }

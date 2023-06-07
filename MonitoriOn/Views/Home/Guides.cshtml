@@ -1,0 +1,130 @@
+﻿@{
+    ViewData["Title"] = "Руководство";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Guide.min.css" />
+}
+
+
+<div class="main-body">
+    
+    <div class="guide-header">
+        <ul>
+            <li class="guide-item guide-item-activated" id="HowToOrder">
+                <a><span>Как сделать заказ</span></a>
+            </li>
+            <li class="guide-item" id="Payments">
+                <a><span>Способы оплаты</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="guide-body">
+        <div class="HowToOrder guide-block-activated">
+            <div class="textBlock">
+                <h2>Как сделать заказ</h2>
+            </div>
+            <div class="textBlock">
+                <h3>1. Войти или зарегистрироваться</h3>
+                <p>
+                    <span style="border-bottom: 1px solid #fff;">Этот пункт не является обязательным</span>, но мы рекомендуем Войти или Зарегестрироваться:
+                </p>
+                <img src="/img/guides/HowToOrder1.jpg"/>
+            </div>
+            <div class="textBlock">
+                <h3>2. Добавить товар в «Корзину»</h3>
+                <p>
+                    Для этого необходимо навестить курсором на необходимый товар и нажать «В корзину»:
+                </p>
+                <img src="/img/guides/HowToOrder2.jpg" />
+                <p>
+                    Также товар можно добавить в корзину из страницы с подробной информацией о товаре:
+                </p>
+                <img src="/img/guides/HowToOrder3.jpg" />
+            </div>
+            <div class="textBlock">
+                <h3>3. Перейти в корзину</h3>
+                <p>
+                    Для продолжения оформления заказа перейдите в «Корзину». <br />
+                    нажав на корзину в правом верхнем углу сайта:
+                </p>
+                <img src="/img/guides/HowToOrder4.jpg" />
+            </div>
+            <div class="textBlock">
+                <h3>4. Проверить заказ</h3>
+                <p>
+                    Проверьте состав заказа. Удалите товар, если ошиблись с выбором:
+                </p>
+                <img src="/img/guides/HowToOrder5.jpg" />
+            </div>
+            <div class="textBlock">
+                <h3>5. Доставка</h3>
+                <p>
+                    Выберите способ доставки.
+                </p>
+                <img src="/img/guides/HowToOrder6.jpg" />
+            </div>
+            <div class="textBlock">
+                <h3>6. Выбрать способ оплаты</h3>
+                <p>
+                    Выберите способ оплаты из предложенных.
+                </p>
+            </div>
+            <div class="textBlock">
+                <h3>7. Завершить оформление заказа</h3>
+                <p>
+                    Нажмите кнопку «Оплатить заказ». После поступления оплаты заказ будет оформлен.
+                </p>
+            </div>
+        </div>
+        <div class="Payments">
+            <div class="textBlock">
+                <h2>Способы оплаты</h2>
+                <span>Понравившийся товар Вы можете оплатить перечисленными ниже способами.</span>
+            </div>
+            <div class="textBlock">
+                <h3>Банковская карта</h3>
+                <p>
+                    Оплата банковской картой, через Интернет, возможна через системы электронных платежей.<br />
+                    Номер карты (PAN) должен иметь не менее 15 и не более 19 символов. <br />
+                    Мы принимаем платежи с сайта по следующим банковским картам<br />
+                    VISA &nbsp; &nbsp; Mastercard &nbsp; &nbsp; Maestro &nbsp; &nbsp; МИР
+                </p>
+            </div>
+            <div class="textBlock">
+                <h3>Оплата через СБП (Систему быстрых платежей)</h3>
+                <p>
+                    Система быстрых платежей (далее "СБП") - сервис платежной системы Банка России, позволяющий физическим лицам производить оплату за товар/услуги с помощью любого банка-участника СБП.<br/>
+                    Список банков-участников опубликован на официальном сайте <a href="https://sbp.nspk.ru/participants/" style="text-decoration: underline; border-bottom: 1px solid #242424;">https://sbp.nspk.ru/participants/</a><br />
+                    Безопасность переводов обеспечивается на стороне всех банков-участников СБП: банков, Банка России и НСПК с использованием современных систем защиты. СБП соответствует всем стандартам информационной безопасности.<br />
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        let items = $(".guide-item");
+
+        items.on('click', function()
+        {
+            items.each(function(){
+                if ($(this).hasClass('guide-item-activated')) {
+                    $(this).removeClass('guide-item-activated');
+                }
+            })
+
+            $(this).addClass('guide-item-activated');
+
+            $('.guide-body').children().each(function (){
+                $(this).removeClass('guide-block-activated');
+            });
+
+            let guideBodyToShow = $('.' + this.id);
+
+            guideBodyToShow.addClass('guide-block-activated');
+        });
+    </script>
+}

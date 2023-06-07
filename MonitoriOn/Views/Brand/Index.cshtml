@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="~/css/Categories.min.css" />
 }
 
-<div class="main-header">
+<div id="modal-placeholder">
+
+</div>
+
+<div class="main-header" id="BrandListHeader">
     <div class="main-header-title">
         <h2>Список Брендов</h2>
     </div>
@@ -23,13 +27,34 @@
         <div class="main-body">
             @foreach (var obj in Model)
             {
-                <div class="main-body-element">
+                <div class="main-body-element" id="BrandListBody">
                     <div class="main-body-element-name">
                         <h4>@obj.Name</h4>
                     </div>
                     <div class="main-body-element-shortdesc">
                         <p>@obj.ShortDescription</p>
                     </div>
+                    <div class="main-body-element-director">
+                        <p>@obj.Director</p>
+                    </div>
+                    <div class="main-body-element-mainaccountant">
+                        <p>@obj.MainAccountant</p>
+                    </div>
+                    <div class="main-body-element-address">
+                        <p>@obj.Address</p>
+                    </div>
+                    <div class="main-body-element-bankdetail">
+                        @if (obj.BankDetail != null)
+                        {
+                            @Html.ActionLink("Банковские реквизиты", "BankDetail", "Brand", obj.BankDetail, new { @dataToggle="ajax-modal", @style="text-decoration: underline;" })
+                            @*<a data-toggle="ajax-modal" asp-action="BankDetail" asp-controller="Brand" asp-all-route-data="@obj.BankDetail">Банковские реквизиты</a>*@
+                        }
+                        else
+                        {
+                            <p></p>
+                        }
+                    </div>
+                    @*Модальное окно с информацией о реквизитах*@
                     <div class="main-body-element-buttons">
                         <a class="btn-default" asp-controller="Brand" asp-action="Edit" asp-route-Id="@obj.Id">Изменить</a>
                         <a class="btn-default" asp-controller="Brand" asp-action="Delete" asp-route-Id="@obj.Id">Удалить</a>
@@ -43,6 +68,43 @@ else
     <h3>Список пуст</h3>
 }
 
-<div class="main-footer">
+<div class="main-footer" id="BrandListFooter">
     <a asp-controller="Home" asp-action="Index" class="btn-default">Назад</a>
 </div>
+
+@section scripts
+    {
+    <script type="text/javascript">
+
+        $(function () {
+            var placeholderElement = $('#modal-placeholder');
+
+            $.ajaxSetup({ cache: false });
+
+            $('a[dataToggle="ajax-modal"]').click(function (e) {
+
+                e.preventDefault();
+
+                $.get(this.href, function (data) {
+                    placeholderElement.html(data);
+                    placeholderElement.find('.modal').addClass('open');
+                });
+            });
+
+        })
+
+        function closeModalBtn() {
+            $('.modal').removeClass('open');
+            $('#modal-placeholder').empty();
+        }
+
+        function closeModalDark() {
+            if (!event.target.closest('.modal-content')) {
+                $('.modal').removeClass('open');
+                $('#modal-placeholder').empty();
+            }
+        }
+
+
+    </script>
+}

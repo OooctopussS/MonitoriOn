@@ -15,5 +15,17 @@ namespace MonitoriOn.Models
         [Display(Name = "Краткое описание")]
         [StringLength(40, ErrorMessage = "Максимальная длина 40 символов")]
         public string? ShortDescription { get; set; }
+
+        [Display(Name = "Адрес")]
+        public string? Address { get; set; }
+
+        [Display(Name = "Директор")]
+        public string? Director { get; set; }
+
+        [Display(Name = "Главный бухгалтер")]
+        public string? MainAccountant { get; set; }
+
+        [Display(Name = "Банковсие реквизиты")]
+        public BankDetail? BankDetail { get; set; }
     }
 }

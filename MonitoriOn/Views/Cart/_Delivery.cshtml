@@ -1,0 +1,65 @@
+﻿@model MonitoriOn.Models.MonitorsOrder
+@{
+    string? className;
+    if (TempData["Delivery"]?.ToString() == "true")
+    {
+        className = "open";
+    }
+    else
+    {
+        className = null;
+    }
+}
+
+<div class="modal @className" onclick="closeModalDark()">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-content-header">
+                <h2>Cпособ доставки</h2>
+                <button class="btn-modal-close" onclick="closeModalBtn()">
+                    <img src="~/img/profile/modal/close.svg" />
+                </button>
+            </div>
+            <div class="modal-content-body">
+                <form>
+                    <div class="deliveryMethods">
+                        <div class="formBlock">
+                            <div class="delivery">
+                                <div class="deliveryMethod">
+                                    <input type="hidden" asp-for="IsDelivery" value="true" id="IsDelivery" />
+                                    <label for="DeliveryType1">Доставка</label>
+                                    <input type="radio" id="DeliveryType1" name="DeliveryType" onchange="changeDeliveryMethod(this)" value="1" checked>
+                                </div>
+                                <div class="deliveryMethod">
+                                    <input type="hidden" asp-for="IsPickUp" value="false" id="IsPickUp" />
+                                    <label for="DeliveryType3">Самовывоз</label>
+                                    <input type="radio" id="DeliveryType3" name="DeliveryType" onchange="changeDeliveryMethod(this)" value="2">
+                                </div>
+                            </div>
+                            <div class="formBlock-inputBlock" id="AddressBlock">
+                                <label asp-for="UserAddress"></label>
+                                <input asp-for="UserAddress" type="text" />
+                            </div>
+                        </div>
+                        <div class="formBlock account">
+                            <div class="formBlock-inputBlock">
+                                <label asp-for="Account"></label>
+                                <input asp-for="Account" type="text" autocomplete="off" />
+                                <span asp-validation-for="AccountCVV"></span>
+                            </div>
+                            <div class="formBlock-inputBlock">
+                                <label asp-for="AccountCVV"></label>
+                                <input asp-for="AccountCVV" type="text" autocomplete="off"/>
+                                <span asp-validation-for="AccountCVV"></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="btnBlock">
+                        <button class="btn-default" asp-action="BuyMonitors" asp-controller="Cart" type="submit">Купить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

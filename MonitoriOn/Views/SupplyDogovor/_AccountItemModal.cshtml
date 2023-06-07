@@ -1,0 +1,60 @@
+﻿@model MonitoriOn.Models.SupplyDogovorAccount
+
+<div class="modal" onclick="closeModalDark()">
+    <div class="modal-dialog">
+        <div class="modal-content modal-content-expand">
+            <div class="modal-content-header">
+                <h2>Данные по счету договора</h2>
+                <button class="btn-modal-close" onclick="closeModalBtn()">
+                    <img src="~/img/profile/modal/close.svg" />
+                </button>
+            </div>
+            <div class="modal-content-body">
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="AccountNumber"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="AccountNumber" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="Date"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input type="text" value="@Model.Date.ToString()" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="Amount"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="Amount" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="VAT"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="VAT" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="IsPaid"></label>
+                        <input asp-for="IsPaid" type="checkbox" style="margin-left: 10px;" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group" style="margin-top: 0px;">
+                    <div class="form-body-group-label">
+                        <label asp-for="IsReceived"></label>
+                        <input asp-for="IsReceived" type="checkbox" style="margin-left: 10px;" autocomplete="off" disabled />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

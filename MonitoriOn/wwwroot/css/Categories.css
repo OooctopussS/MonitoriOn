@@ -1,4 +1,97 @@
-﻿.main-header {
+﻿.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.8s ease 0s;
+}
+.modal-dialog {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 10px;
+}
+.modal-dialog .modal-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+  background-color: #171a1c;
+  padding: 30px;
+  border-radius: 2%;
+  max-width: 800px;
+  position: relative;
+}
+.modal-dialog .modal-content-header {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+}
+.modal-dialog .modal-content-header h2 {
+  font-size: 26px;
+  justify-self: center;
+}
+.modal-dialog .modal-content-header p span {
+  border-bottom: 1px solid #dd0000;
+}
+.modal-dialog .modal-content-header .btn-modal-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  display: grid;
+}
+.modal-dialog .modal-content-header .btn-modal-close img {
+  width: 32px;
+  height: 32px;
+}
+.modal-dialog .modal-content-body form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 40px;
+}
+.modal-dialog .modal-content-body form .textBlock {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+}
+.modal-dialog .modal-content-body form .textBlock input {
+  display: block;
+  padding: 10px;
+  font-size: 16px;
+  color: #dddddd;
+  background-color: transparent;
+  border: 2px solid #dddddd;
+}
+.modal-dialog .modal-content-body form .textBlock span {
+  color: #990000;
+}
+.modal-dialog .modal-content-body form .model-error {
+  color: #990000;
+}
+.modal-dialog .modal-content-body form .model-error ul {
+  list-style-type: none;
+}
+.modal-dialog .modal-content-body form .btnBlock {
+  justify-self: center;
+}
+.modal-dialog .modal-content-expand {
+  padding: 30px 80px;
+}
+
+.modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.main-header {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   margin-bottom: 40px;
@@ -82,6 +175,44 @@
   justify-self: start;
 }
 
+#Brands {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr !important;
+  grid-column-gap: 20% !important;
+  align-items: end;
+}
+
+#SupplyDogovors {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr !important;
+  grid-column-gap: 20% !important;
+  align-items: start;
+}
+
+#BrandListHeader {
+  grid-template-columns: 1fr 3fr 1fr !important;
+}
+
+#BrandListBody {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr !important;
+}
+
+#BrandListFooter {
+  grid-template-columns: 1fr 3fr 1fr !important;
+}
+
+#SupplyDogovorsHeader {
+  grid-template-columns: 3fr 5fr 2fr !important;
+}
+
+#SupplyDogovor {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr !important;
+}
+
+#SupplyDogovorsFooter {
+  grid-template-columns: 3fr 5fr 2fr !important;
+}
+
 .form-header {
   margin-bottom: 40px;
 }
@@ -113,11 +244,14 @@
 .form-body-group-label {
   margin-bottom: 5px;
 }
-.form-body-group-main input[type=text], .form-body-group-main input[type=number], .form-body-group-main select, .form-body-group-main input[type=file] {
+.form-body-group-main input[type=text], .form-body-group-main input[type=number], .form-body-group-main select, .form-body-group-main input[type=file], .form-body-group-main input[type=date] {
   padding: 10px;
   margin: 10px 0;
   font-size: 16px;
   color: white;
+}
+.form-body-group-main input[type=data]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 .form-body-group-main input::-webkit-outer-spin-button,
 .form-body-group-main input::-webkit-inner-spin-button {

@@ -7,16 +7,20 @@
         userDropdown.classList.toggle('show');
     }
 
-    document.getElementById("adminPanelDropdown").classList.toggle("show");
+    if (document.getElementById("adminPanelDropdown") != null) {
+        document.getElementById("adminPanelDropdown").classList.toggle("show");
+
+    }
 }
 
 function userdropdownToggle() {
 
     var adminDropdown = document.getElementById("adminPanelDropdown");
 
-    if (adminDropdown.classList.contains('show'))
-    {
-        adminDropdown.classList.toggle('show')
+    if (adminDropdown != null) {
+        if (adminDropdown.classList.contains('show')) {
+            adminDropdown.classList.toggle('show')
+        }
     }
     document.getElementById("userPanelDropdown").classList.toggle("show");
 }

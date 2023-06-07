@@ -155,6 +155,47 @@ namespace MonitoriOn.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MonitoriOn.Models.BankDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BankAccount")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BankAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BankBIC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BankName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CorrespondentAccount")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("INN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Recipient")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BankDetail");
+                });
+
             modelBuilder.Entity("MonitoriOn.Models.Brand", b =>
                 {
                     b.Property<int>("Id")
@@ -162,6 +203,18 @@ namespace MonitoriOn.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BankDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Director")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MainAccountant")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -173,6 +226,8 @@ namespace MonitoriOn.Migrations
                         .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BankDetailId");
 
                     b.ToTable("Brands");
                 });
@@ -230,6 +285,9 @@ namespace MonitoriOn.Migrations
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
+                    b.Property<string>("BuyerId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -245,15 +303,27 @@ namespace MonitoriOn.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("MonitorsOrderId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ParentMonitorId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
                     b.Property<string>("ShortDescription")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sost")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SupplyDogovorId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -262,6 +332,10 @@ namespace MonitoriOn.Migrations
                     b.HasIndex("DisplayResolutionId");
 
                     b.HasIndex("FrameUpdaetId");
+
+                    b.HasIndex("MonitorsOrderId");
+
+                    b.HasIndex("SupplyDogovorId");
 
                     b.ToTable("Monitors");
                 });
@@ -273,6 +347,9 @@ namespace MonitoriOn.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -336,6 +413,104 @@ namespace MonitoriOn.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("MonitoriOn.Models.MonitorsOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Account")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AccountCVV")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelivery")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPickUp")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MonitorsOrders");
+                });
+
+            modelBuilder.Entity("MonitoriOn.Models.SupplyDogovor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeliveryCondition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Provider")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("SupplyDogovors");
+                });
+
+            modelBuilder.Entity("MonitoriOn.Models.SupplyDogovorAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsReceived")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("VAT")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SupplyDogovorAccounts");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -387,6 +562,15 @@ namespace MonitoriOn.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MonitoriOn.Models.Brand", b =>
+                {
+                    b.HasOne("MonitoriOn.Models.BankDetail", "BankDetail")
+                        .WithMany()
+                        .HasForeignKey("BankDetailId");
+
+                    b.Navigation("BankDetail");
+                });
+
             modelBuilder.Entity("MonitoriOn.Models.Monitor", b =>
                 {
                     b.HasOne("MonitoriOn.Models.Brand", "Brand")
@@ -407,11 +591,40 @@ namespace MonitoriOn.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MonitoriOn.Models.MonitorsOrder", null)
+                        .WithMany("Monitors")
+                        .HasForeignKey("MonitorsOrderId");
+
+                    b.HasOne("MonitoriOn.Models.SupplyDogovor", null)
+                        .WithMany("Monitors")
+                        .HasForeignKey("SupplyDogovorId");
+
                     b.Navigation("Brand");
 
                     b.Navigation("DisplayResolution");
 
                     b.Navigation("FrameUpdate");
+                });
+
+            modelBuilder.Entity("MonitoriOn.Models.SupplyDogovor", b =>
+                {
+                    b.HasOne("MonitoriOn.Models.SupplyDogovorAccount", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("MonitoriOn.Models.MonitorsOrder", b =>
+                {
+                    b.Navigation("Monitors");
+                });
+
+            modelBuilder.Entity("MonitoriOn.Models.SupplyDogovor", b =>
+                {
+                    b.Navigation("Monitors");
                 });
 #pragma warning restore 612, 618
         }

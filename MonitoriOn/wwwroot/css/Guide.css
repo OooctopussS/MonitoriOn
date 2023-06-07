@@ -1,0 +1,64 @@
+﻿.guide-header ul {
+  display: flex;
+  list-style-type: none;
+}
+.guide-header ul li {
+  opacity: 0.5;
+}
+.guide-header ul li a {
+  cursor: pointer;
+}
+.guide-header ul li a span {
+  font-size: 20px;
+}
+.guide-header ul li:not(:last-child) {
+  margin-right: 20px;
+}
+.guide-header ul li:hover {
+  border-bottom: 1px solid #fff;
+}
+
+.guide-body {
+  padding-top: 40px;
+}
+.guide-body .HowToOrder,
+.guide-body .Payments,
+.guide-body .Delivery,
+.guide-body .ReturnProduct,
+.guide-body .ReturnMoney {
+  display: none;
+}
+.guide-body .textBlock {
+  line-height: 1.5;
+}
+.guide-body .textBlock h2, .guide-body .textBlock h3 {
+  margin-bottom: 20px;
+}
+.guide-body .textBlock h2 {
+  font-size: 28px;
+}
+.guide-body .textBlock h3 {
+  font-size: 24px;
+}
+.guide-body .textBlock span, .guide-body .textBlock p {
+  font-size: 20px;
+}
+.guide-body .textBlock img {
+  display: block;
+  margin: 16px 0 20px;
+  max-width: 100%;
+  border: 1px solid #d7d7d7;
+  padding: 10px;
+}
+.guide-body .textBlock:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+.guide-item-activated {
+  opacity: 1 !important;
+  border-bottom: 1px solid #fff !important;
+}
+
+.guide-block-activated {
+  display: block !important;
+}

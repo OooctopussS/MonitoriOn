@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MonitoriOn.Data;
 using MonitoriOn.Models;
@@ -16,7 +17,7 @@ namespace MonitoriOn.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Brand> brandsList = _db.Brands;
+            IEnumerable<Brand> brandsList = _db.Brands.Include(u => u.BankDetail);
 
             return View(brandsList);
         }
@@ -51,7 +52,7 @@ namespace MonitoriOn.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Brands.Find(id);
+            var obj = _db.Brands.Include(u => u.BankDetail).FirstOrDefault(i => i.Id == id);
 
             if (obj == null)
             {
@@ -85,7 +86,7 @@ namespace MonitoriOn.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Brands.Find(id);
+            var obj = _db.Brands.Include(u => u.BankDetail).FirstOrDefault(i => i.Id == id);
 
             if (obj == null)
             {
@@ -100,17 +101,31 @@ namespace MonitoriOn.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int id)
         {
-            var obj = _db.Brands.Find(id);
+            var obj = _db.Brands.Include(u => u.BankDetail).FirstOrDefault(i => i.Id == id);
 
             if (obj == null)
             {
                 return NotFound();
             }
 
+            if (obj.BankDetail != null)
+            {
+                var bankDetail = _db.BankDetail.FirstOrDefault(i => i.Id == obj.BankDetail.Id);
+
+                if (bankDetail != null)
+                    _db.BankDetail.Remove(bankDetail);
+            }
+
+
             _db.Brands.Remove(obj);
             _db.SaveChanges();
 
             return RedirectToAction(nameof(Index));
+        }
+        // GET - BankDetail
+        public IActionResult BankDetail(BankDetail bankDetail)
+        {
+            return PartialView("_BankDetailModal", bankDetail);
         }
 
     }

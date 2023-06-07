@@ -1,0 +1,72 @@
+﻿@model MonitoriOn.Models.BankDetail
+
+<div class="modal" onclick="closeModalDark()">
+    <div class="modal-dialog">
+        <div class="modal-content modal-content-expand">
+            <div class="modal-content-header">
+                <h2>Банковские реквизиты</h2>
+                <button class="btn-modal-close" onclick="closeModalBtn()">
+                    <img src="~/img/profile/modal/close.svg" />
+                </button>
+            </div>
+            <div class="modal-content-body">
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="Recipient"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="Recipient" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="BankAccount"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="BankAccount" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="BankName"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="BankName" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="INN"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="INN" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="BankBIC"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="BankBIC" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group">
+                    <div class="form-body-group-label">
+                        <label asp-for="CorrespondentAccount"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="CorrespondentAccount" autocomplete="off" disabled />
+                    </div>
+                </div>
+                <div class="form-body-group" style="margin-top: 0px !important;">
+                    <div class="form-body-group-label">
+                        <label asp-for="BankAddress"></label>
+                    </div>
+                    <div class="form-body-group-main">
+                        <input asp-for="BankAddress" autocomplete="off" disabled />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

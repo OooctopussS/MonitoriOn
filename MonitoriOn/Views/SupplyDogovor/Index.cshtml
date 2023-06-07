@@ -1,0 +1,112 @@
+﻿@model IEnumerable<MonitoriOn.Models.SupplyDogovor>
+
+@{
+    ViewData["Title"] = "Договоры на поставку";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Categories.min.css" />
+}
+
+<div id="modal-placeholder">
+</div>
+
+<div class="main-header" id="SupplyDogovorsHeader">
+    <div class="main-header-title">
+        <h2>Список Договоров на поставку</h2>
+    </div>
+    <div class="main-header-create">
+        <a asp-controller="SupplyDogovor" asp-action="Create" class="btn-default">Добавить Договор</a>
+    </div>
+</div>
+
+@if (Model.Count() > 0)
+{
+    <div class="main-body">
+        @foreach (var obj in Model)
+        {
+            <div class="main-body-element" id="SupplyDogovor">
+                <div class="main-body-element-name">
+                    <h4>@obj.Id</h4>
+                </div>
+                <div class="main-body-element-provider">
+                    <p>@obj.Provider</p>
+                </div>
+                <div class="main-body-element-date">
+                    <p>@obj.Date</p>
+                </div>
+                <div class="main-body-element-desc">
+                    <p>@obj.Description</p>
+                </div>
+                <div class="main-body-element-deliverycondition">
+                    <p>@obj.DeliveryCondition</p>
+                </div>
+                <div class="main-body-element-account">
+                    @Html.ActionLink("Данные по счету", "AccountInfo", "SupplyDogovor", obj.Account, new { @dataToggle="ajax-modal", @style="text-decoration: underline;" })
+                </div>
+                <div class="main-body-element-monitors">
+                    @if (obj.Monitors.Any())
+                    {
+                        @Html.ActionLink("Товары", "Monitors", "SupplyDogovor", obj, new { @dataToggle="ajax-modal", @style="text-decoration: underline;" })
+                    }
+                    else
+                    {
+                        <p></p>
+                    }
+                </div>
+                <div class="main-body-element-setdelivery">
+                    <a style="text-decoration: underline;" asp-controller="SupplyDogovor" asp-action="SetDelivery" asp-route-Id="@obj.Id">Подтвердить доставку</a>
+                </div>
+                <div class="main-body-element-buttons">
+                    <a class="btn-default" asp-controller="SupplyDogovor" asp-action="Delete" asp-route-Id="@obj.Id">Удалить</a>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <h3>Список пуст</h3>
+}
+
+<div class="main-footer" id="SupplyDogovorsFooter">
+    <a asp-controller="Home" asp-action="Index" class="btn-default">Назад</a>
+</div>
+
+@section scripts
+    {
+    <script type="text/javascript">
+
+        $(function () {
+            var placeholderElement = $('#modal-placeholder');
+
+            $.ajaxSetup({ cache: false });
+
+            $('a[dataToggle="ajax-modal"]').click(function (e) {
+
+                e.preventDefault();
+
+                $.get(this.href, function (data) {
+                    placeholderElement.html(data);
+                    placeholderElement.find('.modal').addClass('open');
+                });
+            });
+
+        })
+
+        function closeModalBtn() {
+            $('.modal').removeClass('open');
+            $('#modal-placeholder').empty();
+        }
+
+        function closeModalDark() {
+            if (!event.target.closest('.modal-content')) {
+                $('.modal').removeClass('open');
+                $('#modal-placeholder').empty();
+            }
+        }
+
+
+    </script>
+}

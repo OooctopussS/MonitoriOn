@@ -10,6 +10,9 @@ namespace MonitoriOn.Models.ViewModels
         [Display(Name = "Имя")]
         public string? FirstName { get; set; }
 
+        [Display(Name = "Адрес")]
+        public string? Address { get; set; }
+
         [DisplayName("Почта")]
         [EmailAddress(ErrorMessage = "Введите корректную почту")]
         public string? Email { get; set; }

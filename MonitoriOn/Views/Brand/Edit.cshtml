@@ -14,32 +14,126 @@
     <div class="form-header">
         <h2>Редактирование Бренда</h2>
     </div>
-    <div class="form-body form-body-categories">
-        <div class="form-body-group">
-            <div class="form-body-group-label">
-                <label asp-for="Name"></label>
-            </div>
-            <div class="form-body-group-main">
-                <input asp-for="Name" autocomplete="off" />
-                <span asp-validation-for="Name"></span>
-            </div>
-        </div>
-        <div class="form-body-group">
-            <div class="form-body-group-label">
-                <label asp-for="ShortDescription"></label>
-            </div>
-            <div class="form-body-group-main">
-                <input asp-for="ShortDescription" autocomplete="off" />
-                <span asp-validation-for="ShortDescription"></span>
-            </div>
-        </div>
-        <div class="form-body-group">
-            <div class="form-body-group-buttons-container">
-                <div class="form-body-group-buttons">
-                    <input class="form-body-group-buttons-button btn-default" type="submit" value="Редактировать" />
+    <div class="form-body form-body-categories" id="Brands">
+        <div class="form-body-block" style="display: grid;">
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Name"></label>
                 </div>
-                <div class="form-body-group-buttons">
-                    <a class="form-body-group-buttons-button btn-default" asp-action="Index">Назад</a>
+                <div class="form-body-group-main">
+                    <input asp-for="Name" autocomplete="off" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="ShortDescription"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="ShortDescription" autocomplete="off" />
+                    <span asp-validation-for="ShortDescription"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Director"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Director" autocomplete="off" />
+                    <span asp-validation-for="Director"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="MainAccountant"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="MainAccountant" autocomplete="off" />
+                    <span asp-validation-for="MainAccountant"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Address"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Address" autocomplete="off" />
+                    <span asp-validation-for="Address"></span>
+                </div>
+            </div>
+            <div class="form-body-group" style="align-self: end;">
+                <div class="form-body-group-buttons-container">
+                    <div class="form-body-group-buttons">
+                        <input class="form-body-group-buttons-button btn-default" type="submit" value="Редактировать" />
+                    </div>
+                    <div class="form-body-group-buttons">
+                        <a class="form-body-group-buttons-button btn-default" asp-action="Index">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-body-block">
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="BankDetail.Recipient"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="BankDetail.Recipient" autocomplete="off" />
+                    <span asp-validation-for="BankDetail.Recipient"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="BankDetail.BankAccount"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="BankDetail.BankAccount" autocomplete="off" />
+                    <span asp-validation-for="BankDetail.BankAccount"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="BankDetail.BankName"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="BankDetail.BankName" autocomplete="off" />
+                    <span asp-validation-for="BankDetail.BankName"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="BankDetail.INN"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="BankDetail.INN" autocomplete="off" />
+                    <span asp-validation-for="BankDetail.INN"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="BankDetail.BankBIC"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="BankDetail.BankBIC" autocomplete="off" />
+                    <span asp-validation-for="BankDetail.BankBIC"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="BankDetail.CorrespondentAccount"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="BankDetail.CorrespondentAccount" autocomplete="off" />
+                    <span asp-validation-for="BankDetail.CorrespondentAccount"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="BankDetail.BankAddress"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="BankDetail.BankAddress" autocomplete="off" />
+                    <span asp-validation-for="BankDetail.BankAddress"></span>
                 </div>
             </div>
         </div>

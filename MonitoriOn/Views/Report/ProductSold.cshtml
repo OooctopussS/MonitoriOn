@@ -1,0 +1,59 @@
+﻿@model List<MonitoriOn.Models.Monitor>
+
+@{
+    ViewData["Title"] = "Отчет по продоваемому товару";
+}
+
+@section head_Link
+   {
+    <link rel="stylesheet" href="~/css/Categories.min.css" />
+}
+
+
+@if (Model.Count() > 0)
+{
+    <div class="main-body">
+        @{
+            decimal priceSum = 0;
+            int quantitySum = 0;
+        }
+        @foreach (var obj in Model)
+        {
+            priceSum += obj.Price;
+            quantitySum += obj.Count;
+            <div class="main-body-element" id="BrandListBody">
+                <div class="main-body-element-name">
+                    <h4>@obj.Name</h4>
+                </div>
+                <div class="main-body-element-shortdesc">
+                    <p>@obj.Count</p>
+                </div>
+                <div class="main-body-element-director">
+                    <p>@obj.Price</p>
+                </div>
+                <div class="main-body-element-brand">
+                    <p>@obj.Brand.Name</p>
+                </div>
+                <div class="main-body-element-brand">
+                    <p>@obj.DisplayResolution.Name</p>
+                </div>
+                <div class="main-body-element-brand">
+                    <p>@obj.FrameUpdate.Name</p>
+                </div>
+            </div>
+        }
+        <div style="margin-top: 20px; font-size: 18px;">
+            <span>Итого</span> <br/>
+            <span>Количество: @quantitySum</span><br />
+            <span>Цена: @priceSum</span><br />
+        </div>
+    </div>
+}
+else
+{
+    <h3>Список пуст</h3>
+}
+
+<div class="main-footer" id="SupplyDogovorsFooter">
+    <a asp-controller="Home" asp-action="Index" class="btn-default">Назад</a>
+</div>

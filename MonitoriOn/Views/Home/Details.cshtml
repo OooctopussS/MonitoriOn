@@ -43,7 +43,15 @@
                 }
                 else
                 {
-                    <button asp-route-Id="@Model.Monitor.Id" type="submit" class="btn-default">Добавить в корзину</button>
+                    if (Model.Monitor.Count > 0)
+                    {
+                        <button asp-route-Id="@Model.Monitor.Id" type="submit" class="btn-default">Добавить в корзину</button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn-default">Добавить в корзину</button>
+
+                    }
                 }
             </div>
             <div class="details-footer-button">

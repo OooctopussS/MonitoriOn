@@ -1,0 +1,153 @@
+﻿@model MonitoriOn.Models.SupplyDogovor
+
+@{
+    ViewData["Title"] = "Создание договора на поставку";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Categories.min.css" />
+}
+
+<form class="form" method="post">
+    <div class="form-header">
+        <h2>Создание Договора</h2>
+    </div>
+    <div class="form-body form-body-categories" id="SupplyDogovors">
+        <div class="form-body-block" style="display: grid;">
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Provider"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Provider" autocomplete="off" />
+                    <span asp-validation-for="Provider"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Description" autocomplete="off" />
+                    <span asp-validation-for="Description"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="DeliveryCondition"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="DeliveryCondition" autocomplete="off" />
+                    <span asp-validation-for="DeliveryCondition"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Date"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Date" type="date" autocomplete="off" />
+                    <span asp-validation-for="Date"></span>
+                </div>
+            </div>
+            <div id="MonitorsBlock">
+                <div class="container-forDelete">
+
+                 </div>
+            </div>
+            <div class="form-body-group" style="justify-self: start;">
+                <div class="form-body-group-buttons-container">
+                    <div class="form-body-group-buttons">
+                        <button id="add_DogovorItem" type="button" class="btn-default">Добавить элемент заказа</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-body-group" style="align-self: end;">
+                <div class="form-body-group-buttons-container">
+                    <div class="form-body-group-buttons">
+                        <input class="form-body-group-buttons-button btn-default" type="submit" value="Создать" />
+                    </div>
+                    <div class="form-body-group-buttons">
+                        <a class="form-body-group-buttons-button btn-default" asp-action="Index">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-body-block">
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Account.AccountNumber"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Account.AccountNumber" autocomplete="off" />
+                    <span asp-validation-for="Account.AccountNumber"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Account.Date"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Account.Date" type="date" autocomplete="off" />
+                    <span asp-validation-for="Account.Date"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Account.Amount"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Account.Amount" autocomplete="off" />
+                    <span asp-validation-for="Account.Amount"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Account.VAT"></label>
+                </div>
+                <div class="form-body-group-main">
+                    <input asp-for="Account.VAT" autocomplete="off" />
+                    <span asp-validation-for="Account.VAT"></span>
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Account.IsPaid"></label>
+                    <input type="checkbox" style="margin-left: 10px;" asp-for="Account.IsPaid" value="true" checked autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-body-group">
+                <div class="form-body-group-label">
+                    <label asp-for="Account.IsReceived"></label>
+                    <input type="checkbox" style="margin-left: 10px;" asp-for="Account.IsReceived" value="true" checked autocomplete="off" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        function deleteOrderItem(btn) {
+            $(btn).parents('.container-forDelete').remove();
+            $(btn).parents('.dogovorItem-Container-item').remove();
+        }
+
+        $('#add_DogovorItem').on('click', function () {
+            $.ajax({
+                url: '@Url.Action("MonitorItem", "SupplyDogovor")',
+                type: 'GET',
+                data: {
+                },
+                success: function (result) {
+                    $('#MonitorsBlock').append(result);
+                },
+                error: function () {
+                }
+            });
+        });
+    </script>
+}

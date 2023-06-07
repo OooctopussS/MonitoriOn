@@ -108,3 +108,126 @@
   font-weight: 800;
   letter-spacing: 1.5px;
 }
+
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.8s ease 0s;
+}
+.modal-dialog {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 10px;
+}
+.modal-dialog .modal-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+  background-color: #171a1c;
+  padding: 30px;
+  border-radius: 2%;
+  max-width: 800px;
+  position: relative;
+}
+.modal-dialog .modal-content-header {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+}
+.modal-dialog .modal-content-header h2 {
+  font-size: 26px;
+  justify-self: center;
+}
+.modal-dialog .modal-content-header p span {
+  border-bottom: 1px solid #dd0000;
+}
+.modal-dialog .modal-content-header .btn-modal-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  display: grid;
+}
+.modal-dialog .modal-content-header .btn-modal-close img {
+  width: 32px;
+  height: 32px;
+}
+.modal-dialog .modal-content-body {
+  display: grid;
+}
+.modal-dialog .modal-content-body .delivery {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.modal-dialog .modal-content-body .delivery .deliveryMethod {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.modal-dialog .modal-content-body .account {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.modal-dialog .modal-content-body .formBlock-inputBlock {
+  display: flex;
+  flex-direction: column;
+}
+.modal-dialog .modal-content-body .btnBlock {
+  display: flex;
+  justify-content: center;
+}
+.modal-dialog .modal-content-body .btnBlock button {
+  margin-top: 30px;
+}
+.modal-dialog .modal-content-body input[type=text], .modal-dialog .modal-content-body input[type=number], .modal-dialog .modal-content-body select, .modal-dialog .modal-content-body input[type=file], .modal-dialog .modal-content-body input[type=date] {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  color: white;
+}
+.modal-dialog .modal-content-body input[type=data]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+.modal-dialog .modal-content-body input::-webkit-outer-spin-button,
+.modal-dialog .modal-content-body input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.modal-dialog .modal-content-body input[type=number] {
+  -moz-appearance: textfield;
+}
+.modal-dialog .modal-content-body input, .modal-dialog .modal-content-body select {
+  background-color: transparent;
+  display: inherit;
+  width: 100%;
+  border: 2px solid white;
+}
+.modal-dialog .modal-content-body option {
+  color: black;
+}
+.modal-dialog .modal-content-expand {
+  padding: 30px 80px;
+}
+
+.modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hide {
+  display: none !important;
+}

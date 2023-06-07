@@ -78,6 +78,7 @@ main {
 
     &-row {
         display: grid;
+        grid-template-columns: 1fr 1fr;
         align-items: center;
         padding: 10px 0;
 
@@ -103,16 +104,15 @@ main {
         }
 
         &-rightSide {
-            grid-column: 3/4;
-            display: grid;
-            grid-template-columns: 2fr 1fr 2fr;
-
-            &-adminPanel {
-                justify-self: end;
-            }
+            display: flex;
+            justify-content: center;
 
             &-userPanel {
-                justify-self: center;
+                margin-left: 20px;
+            }
+
+            &-userGuide{
+                margin-left: 20px;
             }
 
             .panel-dropdown {
@@ -157,6 +157,7 @@ main {
                 grid-template-columns: 1fr 1fr;
                 grid-column-gap: 8px;
                 align-items: center;
+                margin-left: 20px;
 
                 .red-circle {
                     width: 8px;

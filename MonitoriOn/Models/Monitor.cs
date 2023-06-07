@@ -45,5 +45,11 @@ namespace MonitoriOn.Models
 
         [Display(Name = "Изображение")]
         public string? Image { get; set; }
+
+        public string? BuyerId { get; set; }
+
+        public int Sost { get; set; }
+
+        public int ParentMonitorId { get; set; }
     }
 }

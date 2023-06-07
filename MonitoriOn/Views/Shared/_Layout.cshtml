@@ -22,29 +22,56 @@
                     </a>
                 </div>
                 <div class="header-row-rightSide">
-                    <div class="header-row-rightSide-adminPanel">
-                        <input class="settingsMenu-toggle" onclick="dropdownToggle()" type="image" src="~/img/header/adminHeader.svg" width="25px" height="25px" />
-                        <ul id="adminPanelDropdown" class="panel-dropdown">
-                            <li>
-                                <a asp-controller="Brand" asp-action="Index">Бренды</a>
-                            </li>
-                            <li>
-                                <a asp-controller="DisplayResolution" asp-action="Index">Разрешение экрана</a>
-                            </li>
-                            <li>
-                                <a asp-controller="FrameUpdate" asp-action="Index">Частота обновления</a>
-                            </li>
-                            <li>
-                                <a asp-controller="Monitor" asp-action="Index">Мониторы</a>
-                            </li>
-                            <li class="li-adminSettings">
-                                <a asp-controller="AdminSettings" asp-action="Index">Настройки пользователей</a>
-                            </li>
-                        </ul>
-                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="header-row-rightSide-adminPanel">
+                            <input class="settingsMenu-toggle" onclick="dropdownToggle()" type="image" src="~/img/header/adminHeader.svg" width="25px" height="25px" />
+                            <ul id="adminPanelDropdown" class="panel-dropdown">
+                                <li>
+                                    <a asp-controller="Brand" asp-action="Index">Бренды</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="DisplayResolution" asp-action="Index">Разрешение экрана</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="FrameUpdate" asp-action="Index">Частота обновления</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Monitor" asp-action="Index">Мониторы</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="SupplyDogovor" asp-action="Index">Договоры на поставку</a>
+                                </li>
+                                <li >
+                                    <a asp-controller="Report" asp-action="ProductSold">Отчет по продоваемому товару</a>
+                                </li>
+                                <li >
+                                    <a asp-controller="Report" asp-action="ProductStock">Отчет по товару на складе</a>
+                                </li>
+                                <li >
+                                    <a asp-controller="Report" asp-action="Index">Отчет про поставщиков товара</a>
+                                </li>
+                                <li >
+                                    <a asp-controller="Report" asp-action="SupplyDogovorsConcluded">Заключенные договора на поставку</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Report" asp-action="SupplyDogovorsPaid">Оплаченные Счета</a>
+                                </li>
+                                <li >
+                                    <a asp-controller="Report" asp-action="Index">Продажи за период</a>
+                                </li>
+                                <li class="li-adminSettings">
+                                    <a asp-controller="AdminSettings" asp-action="SupplyDogovorsDelivery">Поставки за период</a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
                     <div class="header-row-rightSide-userPanel">
                         <partial name="_LoginPartial" />
                     </div>
+                    <a asp-controller="Home" asp-action="Guides" class="header-row-rightSide-userGuide">
+                        <img src="~/img/header/userGuide.svg" width="25px" height="25px" />
+                    </a>
                     <a asp-controller="Cart" asp-action="Index" class="header-row-rightSide-cartPanel">
                         <img src="~/img/header/basketHeader.svg" width="25px" height="25px" />
                         @if (HttpContextAccessor.HttpContext?.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null
@@ -53,6 +80,7 @@
                             <div class="red-circle"></div>
                         }
                     </a>
+                    
                 </div>
             </div>
         </div>
@@ -66,7 +94,7 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-row">
+            <div class="footer-row" style="padding: 10px;">
                 &copy; 2023 - MonitoriOn - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
         </div>

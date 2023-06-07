@@ -29,6 +29,7 @@ namespace MonitoriOn.Controllers
             var newUser = new UserVM
             {
                 FirstName = user.FirstName,
+                Address = user.Address,
                 Email = await _userManager.GetEmailAsync(user),
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(user)
             };
@@ -104,6 +105,7 @@ namespace MonitoriOn.Controllers
             var newUser = new UserVM
             {
                 FirstName = user.FirstName,
+                Address = user.Address,
                 Email = await _userManager.GetEmailAsync(user),
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(user)
             };
@@ -158,6 +160,7 @@ namespace MonitoriOn.Controllers
             var newUser = new UserVM
             {
                 FirstName = user.FirstName,
+                Address = user.Address,
                 Email = await _userManager.GetEmailAsync(user),
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(user)
             };
@@ -195,6 +198,60 @@ namespace MonitoriOn.Controllers
             return View(nameof(Index), newUser);
         }
 
+        // GET - ChangeAddress
+        public IActionResult ChangeAddress()
+        {
+            return PartialView("_ChangeAddress");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("ChangeAddress")]
+        public async Task<IActionResult> ChangeAddressPost(UserVM userVM)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            var newUser = new UserVM
+            {
+                FirstName = user.FirstName,
+                Address = user.Address,
+                Email = await _userManager.GetEmailAsync(user),
+                PhoneNumber = await _userManager.GetPhoneNumberAsync(user)
+            };
+
+            if (!ModelState.IsValid)
+            {
+                TempData["ChangeAddress"] = "true";
+
+                return View(nameof(Index), newUser);
+            }
+
+            TempData["ChangeAddress"] = "false";
+
+            if (user == null)
+            {
+                return NotFound($"Не удалось загрузить пользователя с Id '{_userManager.GetUserId(User)}'.");
+            }
+
+            bool result = user.Address == userVM.Address;
+
+            if (result)
+            {
+                return View(nameof(Index), newUser);
+            }
+
+            if (userVM.Address != null)
+            {
+                user.Address = userVM.Address;
+
+                newUser.Address = userVM.Address;
+
+                await _userManager.UpdateAsync(user);
+            }
+
+            return View(nameof(Index), newUser);
+        }
+
         // GET - ChangePhoneNumber
         public IActionResult ChangePhoneNumber()
         {
@@ -211,6 +268,7 @@ namespace MonitoriOn.Controllers
             var newUser = new UserVM
             {
                 FirstName = user.FirstName,
+                Address = user.Address,
                 Email = await _userManager.GetEmailAsync(user),
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(user)
             };

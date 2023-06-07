@@ -16,6 +16,10 @@
     {
         <partial name="_ChangeName" model="@new UserVM()" />
     }
+    @if (TempData["ChangeAddress"]?.ToString() == "true")
+    {
+        <partial name="_ChangeAddress" model="@new UserVM()" />
+    }
     @if (TempData["ChangePhoneNumber"]?.ToString() == "true")
     {
         <partial name="_ChangePhoneNumber" model="@new UserVM()" />
@@ -74,6 +78,14 @@
         </div>
     </div>
 
+    <div class="profile-changeAddress">
+        <h2>Изменение адреса</h2>
+        <span>Указанный адрес будет указан при выборе доставки товара на дом</span>
+        <div>
+            <a data-toggle="ajax-modal" asp-action="ChangeAddress" asp-controller="Profile">Изменить адрес</a>
+        </div>
+    </div>
+
     <div class="profile-delete">
         <h2>Удаление аккаунта</h2>
         <span>Вместе с аккаунтом все ваши данные будут удалены</span>
@@ -97,7 +109,6 @@
                 e.preventDefault();
 
                 $.get(this.href, function (data) {
-                    console.log(this.href);
                     placeholderElement.html(data);
                     placeholderElement.find('.modal').addClass('open');
                 });

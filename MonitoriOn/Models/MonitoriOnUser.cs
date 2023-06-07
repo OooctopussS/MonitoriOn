@@ -12,5 +12,8 @@ namespace MonitoriOn.Models
         [Display(Name = "Имя")]
         [PersonalData]
         public string FirstName { get; set; } = null!;
+
+        [Display(Name = "Адрес")]
+        public string? Address { get; set; }
     }
 }
