@@ -112,7 +112,7 @@ namespace MonitoriOn.Controllers
                 .Include(d => d.Monitors).ThenInclude(b => b.Brand)
                 .Include(d => d.Monitors).ThenInclude(b => b.DisplayResolution)
                 .Include(d => d.Monitors).ThenInclude(b => b.FrameUpdate)
-                .Where(i => i.Account.IsReceived == true && i.Date >= FromDate).ToList();
+                .Where(i => i.Account.IsReceived == true && i.Account.DateRecieved >= FromDate).ToList();
             }
             else
             {
@@ -120,7 +120,7 @@ namespace MonitoriOn.Controllers
                 .Include(d => d.Monitors).ThenInclude(b => b.Brand)
                 .Include(d => d.Monitors).ThenInclude(b => b.DisplayResolution)
                 .Include(d => d.Monitors).ThenInclude(b => b.FrameUpdate)
-                .Where(i => i.Account.IsReceived == true && i.Date >= FromDate && i.Date <= ToDate).ToList();
+                .Where(i => i.Account.IsReceived == true && i.Account.DateRecieved >= FromDate && i.Account.DateRecieved <= ToDate).ToList();
             }
 
             model.supplyDogovors.AddRange(items);
