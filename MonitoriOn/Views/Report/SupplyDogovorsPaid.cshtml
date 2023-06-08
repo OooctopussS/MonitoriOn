@@ -1,0 +1,70 @@
+﻿@model List<MonitoriOn.Models.SupplyDogovorAccount>
+
+@{
+    ViewData["Title"] = "Отчет об оплаченных счетах";
+}
+
+@section head_Link
+   {
+    <link rel="stylesheet" href="~/css/Categories.min.css" />
+}
+
+
+
+@if (Model.Count() > 0)
+{
+    <div class="main-header" id="Account">
+        <div class="main-header-title">
+            <p>Номер счета</p>
+        </div>
+        <div class="main-header-block">
+            <p>Дата продажи</p>
+        </div>
+        <div class="main-header-block">
+            <p>Дата получения</p>
+        </div>
+        <div class="main-header-block">
+            <p>Сумма</p>
+        </div>
+        <div class="main-header-block">
+            <p>НДС</p>
+        </div>
+
+    </div>
+    <div class="main-body">
+        @foreach (var obj in Model)
+        {
+            <div class="main-body-element" id="Account">
+                <div class="main-body-element-name">
+                    <h4>@obj.AccountNumber</h4>
+                </div>
+                @if (obj.IsPaid)
+                {
+                    <div class="main-body-element-shortdesc">
+                        <p>@obj.DateSold.ToString("dd/MM/yyyy")</p>
+                    </div>
+                }
+                @if (obj.IsReceived)
+                {
+                    <div class="main-body-element-shortdesc">
+                        <p>@obj.DateRecieved.ToString("dd/MM/yyyy")</p>
+                    </div>
+                }
+                <div class="main-body-element-director">
+                    <p>@obj.Amount</p>
+                </div>
+                <div class="main-body-element-brand">
+                    <p>@obj.VAT</p>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <h3>Список пуст</h3>
+}
+
+<div class="main-footer" id="SupplyDogovorsFooter">
+    <a asp-controller="Home" asp-action="Index" class="btn-default">Назад</a>
+</div>

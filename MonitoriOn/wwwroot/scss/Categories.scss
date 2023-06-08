@@ -235,15 +235,38 @@
 }
 
 #SupplyDogovorsHeader {
-    grid-template-columns: 3fr 5fr 2fr !important;
+    grid-template-columns: 3fr 6fr 2fr !important;
 }
 
 #SupplyDogovor {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr !important;
+    grid-template-columns: 0.3fr 0.5fr 1fr 0.5fr 0.5fr 1fr 0.5fr 1fr 1fr 1fr !important;
 }
 
 #SupplyDogovorsFooter {
-    grid-template-columns: 3fr 5fr 2fr !important;
+    grid-template-columns: 3fr 6fr 2fr !important;
+}
+
+#supplyDogovorPaid {
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+}
+
+#SupplyDogovorConcluded {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr !important;
+}
+
+#SupplyDogovorConcludedHeader {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr !important;
+}
+
+#MonitorsSold {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
+}
+#MonitorsSoldHeader {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
+}
+
+#Account {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important;
 }
 
 .form {
@@ -344,3 +367,50 @@
         }
     }
 }
+
+.filter-form {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .filter-body {
+        display: flex;
+        gap: 20px;
+        align-items: end;
+
+        .filter-item {
+            input[type=text], input[type=number], select, input[type=file], input[type=date] {
+                padding: 10px;
+                margin: 10px 0;
+                font-size: 16px;
+                color: white;
+            }
+
+            input[type=data]::-webkit-calendar-picker-indicator {
+                filter: invert(1);
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }
+
+            input[type='number'] {
+                -moz-appearance: textfield;
+            }
+
+            input, select {
+                background-color: transparent;
+                display: inherit;
+                width: 100%;
+                border: 1px solid white;
+            }
+        }
+
+        .filter-submit{
+            margin: 10px 0;
+        }
+    }
+}
+

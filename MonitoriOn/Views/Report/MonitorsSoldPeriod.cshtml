@@ -1,0 +1,153 @@
+﻿@model MonitoriOn.Models.ViewModels.MonitorsSoldPeriodVm
+@{
+    ViewData["Title"] = "Продажи за период";
+}
+
+@section head_Link
+{
+    <link rel="stylesheet" href="~/css/Categories.min.css" />
+}
+
+
+
+<form method="post" class="filter-form">
+    <div class="form-header">
+        <h2>Период времени</h2>
+    </div>
+    <div class="filter-body">
+        <div class="filter-item">
+            <label for="FromDate">От</label>
+            @if (Model.FromDate != DateTime.MinValue)
+            {
+                <input type="date" name="FromDate" id="FromDate" value="@Model.FromDate.ToString("yyyy-MM-dd")" />
+            }
+            else
+            {
+                <input type="date" name="FromDate" id="FromDate" />
+            }
+        </div>
+        <div class="filter-item">
+            <label for="ToDate">До</label>
+            @if (Model.ToDate != DateTime.MinValue)
+            {
+                <input type="date" name="ToDate" id="ToDate" value="@Model.ToDate.ToString("yyyy-MM-dd")" />
+            }
+            else
+            {
+                <input type="date" name="ToDate" id="ToDate" />
+            }
+        </div>
+        <input class="filter-submit btn-default" type="submit" value="Выбрать" />
+    </div>
+</form>
+
+
+@if (Model.monitorsOrders.Count() > 0)
+{
+    <div class="main-header" id="SupplyDogovorConcluded">
+        <div class="main-header-title">
+            <p>Номер покупки</p>
+        </div>
+        <div class="main-header-block">
+            <p>Дата</p>
+        </div>
+        <div class="main-header-block">
+            <p>Сумма</p>
+        </div>
+        <div class="main-header-block">
+            <p>Банковская карта</p>
+        </div>
+        <div class="main-header-block">
+            <p>Способ получения</p>
+        </div>
+        <div class="main-header-block">
+            <p>Адрес</p>
+        </div>
+        <div class="main-header-block">
+        </div>
+    </div>
+
+    <div class="main-body">
+        @foreach (var obj in Model.monitorsOrders)
+        {
+            <div class="main-body-element" id="SupplyDogovorConcluded">
+                <div class="main-body-element-name">
+                    <h4>@obj.Id</h4>
+                </div>
+                <div class="main-body-element-date">
+                    <p>@obj.Date.ToString("yyyy-MM-dd")</p>
+                </div>
+                <div class="main-body-element-shortdesc">
+                    <p>@obj.Amount</p>
+                </div>
+                <div class="main-body-element-director">
+                    <p>@obj.Account</p>
+                </div>
+                <div class="main-body-element-brand">
+                    <p>@(obj.IsDelivery ? "Доставка" : "Самовывоз")</p>
+                </div>
+                <div class="main-body-element-brand">
+                    <p>@obj.UserAddress</p>
+                </div>
+                <div class="main-body-element-monitors">
+                    @if (obj.Monitors.Any())
+                    {
+                        @Html.ActionLink("Товары", "MonitorsPeriodSoldItems", "Report", obj, new { @dataToggle="ajax-modal", @style="text-decoration: underline;" })
+                    }
+                    else
+                    {
+                        <p></p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <div id="modal-placeholder">
+    </div>
+}
+else
+{
+    <h3>Список пуст</h3>
+}
+
+<div class="main-footer" id="SupplyDogovorsFooter">
+    <a asp-controller="Home" asp-action="Index" class="btn-default">Назад</a>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(function () {
+            var placeholderElement = $('#modal-placeholder');
+
+            $.ajaxSetup({ cache: false });
+
+            $('a[dataToggle="ajax-modal"]').click(function (e) {
+
+                e.preventDefault();
+
+                $.get(this.href, function (data) {
+                    placeholderElement.html(data);
+                    placeholderElement.find('.modal').addClass('open');
+                });
+            });
+
+        })
+
+        function closeModalBtn() {
+            $('.modal').removeClass('open');
+            $('#modal-placeholder').empty();
+        }
+
+        function closeModalDark() {
+            if (!event.target.closest('.modal-content')) {
+                $('.modal').removeClass('open');
+                $('#modal-placeholder').empty();
+            }
+        }
+
+
+    </script>
+}

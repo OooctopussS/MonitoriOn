@@ -1,0 +1,67 @@
+﻿@model List<MonitoriOn.Models.Monitor>
+
+<div class="modal" onclick="closeModalDark()">
+    <div class="modal-dialog">
+        <div class="modal-content modal-content-expand">
+            <div class="modal-content-header">
+                <h2>Товары</h2>
+                <button class="btn-modal-close" onclick="closeModalBtn()">
+                    <img src="~/img/profile/modal/close.svg" />
+                </button>
+            </div>
+            <div class="modal-content-body">
+                @foreach (var item in Model)
+                {
+                    <div class="form-body-group">
+                        <div class="form-body-group-label">
+                            <label asp-for="@item.Name"></label>
+                        </div>
+                        <div class="form-body-group-main">
+                            <input asp-for="@item.Name" autocomplete="off" disabled />
+                        </div>
+                    </div>
+                    <div class="form-body-group">
+                        <div class="form-body-group-label">
+                            <label asp-for="@item.Price"></label>
+                        </div>
+                        <div class="form-body-group-main">
+                            <input asp-for="@item.Price" autocomplete="off" disabled />
+                        </div>
+                    </div>
+                    <div class="form-body-group">
+                        <div class="form-body-group-label">
+                            <label asp-for="@item.Count"></label>
+                        </div>
+                        <div class="form-body-group-main">
+                            <input asp-for="@item.Count" autocomplete="off" disabled />
+                        </div>
+                    </div>
+                    <div class="form-body-group">
+                        <div class="form-body-group-label">
+                            <label asp-for="@item.Brand.Name"></label>
+                        </div>
+                        <div class="form-body-group-main">
+                            <input asp-for="@item.Brand.Name" autocomplete="off" disabled />
+                        </div>
+                    </div>
+                    <div class="form-body-group">
+                        <div class="form-body-group-label">
+                            <label asp-for="@item.DisplayResolution.Name"></label>
+                        </div>
+                        <div class="form-body-group-main">
+                            <input asp-for="@item.DisplayResolution.Name" autocomplete="off" disabled />
+                        </div>
+                    </div>
+                    <div class="form-body-group" style="margin-top: 0px;">
+                        <div class="form-body-group-label">
+                            <label asp-for="@item.FrameUpdate.Name"></label>
+                        </div>
+                        <div class="form-body-group-main">
+                            <input asp-for="@item.FrameUpdate.Name" autocomplete="off" disabled />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

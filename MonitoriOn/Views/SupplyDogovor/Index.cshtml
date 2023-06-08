@@ -34,7 +34,7 @@
                     <p>@obj.Provider</p>
                 </div>
                 <div class="main-body-element-date">
-                    <p>@obj.Date</p>
+                    <p>@obj.Date.ToString("dd/MM/yyyy")</p>
                 </div>
                 <div class="main-body-element-desc">
                     <p>@obj.Description</p>
@@ -54,6 +54,9 @@
                     {
                         <p></p>
                     }
+                </div>
+                <div class="main-body-element-setpaid">
+                    <a style="text-decoration: underline;" asp-controller="SupplyDogovor" asp-action="SetPaid" asp-route-Id="@obj.Id">Подтвердить оплату</a>
                 </div>
                 <div class="main-body-element-setdelivery">
                     <a style="text-decoration: underline;" asp-controller="SupplyDogovor" asp-action="SetDelivery" asp-route-Id="@obj.Id">Подтвердить доставку</a>

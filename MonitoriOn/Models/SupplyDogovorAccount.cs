@@ -11,7 +11,10 @@ namespace MonitoriOn.Models
         public string AccountNumber { get; set; } = null!;
 
         [Display(Name = "Дата продажи")]
-        public DateTime Date { get; set; }
+        public DateTime DateSold { get; set; }
+
+        [Display(Name = "Дата получение")]
+        public DateTime DateRecieved { get; set; }
 
         [Display(Name = "Сумма")]
         public decimal Amount { get; set; }

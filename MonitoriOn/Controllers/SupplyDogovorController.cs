@@ -151,11 +151,32 @@ namespace MonitoriOn.Controllers
                 if (account != null)
                 {
                     account.IsReceived = true;
+                    account.DateRecieved = DateTime.Now;
 
                     foreach (var item in supplyDogovor.Monitors)
                     {
                         item.Sost = 1;
                     }
+
+                    _db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult SetPaid(int id)
+        {
+            var supplyDogovor = _db.SupplyDogovors.Include(a => a.Account).FirstOrDefault(d => d.Id == id);
+
+            if (supplyDogovor != null)
+            {
+                var account = _db.SupplyDogovorAccounts.FirstOrDefault(d => d.Id == supplyDogovor.Account.Id);
+
+                if (account != null)
+                {
+                    account.IsPaid = true;
+                    account.DateSold = DateTime.Now;
 
                     _db.SaveChanges();
                 }

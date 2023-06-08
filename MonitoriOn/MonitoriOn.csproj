@@ -29,4 +29,11 @@
     <Folder Include="wwwroot\img\monitor\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Report\SupplyDogovorsPaid.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

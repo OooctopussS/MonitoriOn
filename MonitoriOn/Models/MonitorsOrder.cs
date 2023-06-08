@@ -28,6 +28,6 @@ namespace MonitoriOn.Models
 
         public bool IsDelivery { get; set; }
 
-        public List<Models.Monitor>? Monitors { get; set; }
+        public List<Models.Monitor> Monitors { get; set; } = new List<Models.Monitor>();
     }
 }

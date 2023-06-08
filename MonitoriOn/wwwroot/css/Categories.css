@@ -202,15 +202,39 @@
 }
 
 #SupplyDogovorsHeader {
-  grid-template-columns: 3fr 5fr 2fr !important;
+  grid-template-columns: 3fr 6fr 2fr !important;
 }
 
 #SupplyDogovor {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr !important;
+  grid-template-columns: 0.3fr 0.5fr 1fr 0.5fr 0.5fr 1fr 0.5fr 1fr 1fr 1fr !important;
 }
 
 #SupplyDogovorsFooter {
-  grid-template-columns: 3fr 5fr 2fr !important;
+  grid-template-columns: 3fr 6fr 2fr !important;
+}
+
+#supplyDogovorPaid {
+  grid-template-columns: 1fr 1fr 1fr 1fr !important;
+}
+
+#SupplyDogovorConcluded {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr !important;
+}
+
+#SupplyDogovorConcludedHeader {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr !important;
+}
+
+#MonitorsSold {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
+}
+
+#MonitorsSoldHeader {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
+}
+
+#Account {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important;
 }
 
 .form-header {
@@ -282,4 +306,41 @@
 }
 .form-body-group-buttons:last-child {
   justify-self: end;
+}
+
+.filter-form {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.filter-form .filter-body {
+  display: flex;
+  gap: 20px;
+  align-items: end;
+}
+.filter-form .filter-body .filter-item input[type=text], .filter-form .filter-body .filter-item input[type=number], .filter-form .filter-body .filter-item select, .filter-form .filter-body .filter-item input[type=file], .filter-form .filter-body .filter-item input[type=date] {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  color: white;
+}
+.filter-form .filter-body .filter-item input[type=data]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+.filter-form .filter-body .filter-item input::-webkit-outer-spin-button,
+.filter-form .filter-body .filter-item input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.filter-form .filter-body .filter-item input[type=number] {
+  -moz-appearance: textfield;
+}
+.filter-form .filter-body .filter-item input, .filter-form .filter-body .filter-item select {
+  background-color: transparent;
+  display: inherit;
+  width: 100%;
+  border: 1px solid white;
+}
+.filter-form .filter-body .filter-submit {
+  margin: 10px 0;
 }

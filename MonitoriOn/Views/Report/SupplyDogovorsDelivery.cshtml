@@ -1,7 +1,7 @@
-﻿@model List<MonitoriOn.Models.SupplyDogovor>
+﻿@model MonitoriOn.Models.ViewModels.SupplyDogovorsDeliveryVm
 
 @{
-    ViewData["Title"] = "Отчет про договора на поставку";
+    ViewData["Title"] = "Поставки за перид";
 }
 
 @section head_Link
@@ -12,9 +12,40 @@
 <div id="modal-placeholder">
 </div>
 
-@if (Model.Count() > 0)
+<form method="post" class="filter-form">
+    <div class="form-header">
+        <h2>Период времени</h2>
+    </div>
+    <div class="filter-body">
+        <div class="filter-item">
+            <label for="FromDate">От</label>
+            @if (Model.FromDate != DateTime.MinValue)
+            {
+                    <input type="date" name="FromDate" id="FromDate" value="@Model.FromDate.ToString("yyyy-MM-dd")" />
+            }
+            else
+            {
+                    <input type="date" name="FromDate" id="FromDate" />
+            }
+        </div>
+        <div class="filter-item">
+            <label for="ToDate">До</label>
+            @if (Model.ToDate != DateTime.MinValue)
+            {
+                    <input type="date" name="ToDate" id="ToDate" value="@Model.ToDate.ToString("yyyy-MM-dd")" />
+            }
+            else
+            {
+                    <input type="date" name="ToDate" id="ToDate" />
+            }
+        </div>
+        <input class="filter-submit btn-default" type="submit" value="Выбрать" />
+    </div>
+</form>
+
+@if (Model.supplyDogovors.Count() > 0)
 {
-    <div class="main-header" id="SupplyDogovorConcludedHeader">
+    <div class="main-header" id="SupplyDogovorConcluded">
         <div class="main-header-title">
             <p>Номер договора</p>
         </div>
@@ -22,7 +53,7 @@
             <p>Поставщик</p>
         </div>
         <div class="main-header-block">
-            <p>Дата заключения</p>
+            <p>Дата</p>
         </div>
         <div class="main-header-block">
             <p>Описание</p>
@@ -37,9 +68,8 @@
             <p>Товары</p>
         </div>
     </div>
-
     <div class="main-body">
-        @foreach (var obj in Model)
+        @foreach (var obj in Model.supplyDogovors)
         {
             <div class="main-body-element" id="SupplyDogovorConcluded">
                 <div class="main-body-element-name">
@@ -58,12 +88,12 @@
                     <p>@obj.DeliveryCondition</p>
                 </div>
                 <div class="main-body-element-account">
-                    @Html.ActionLink("Данные по счету", "AccountInfo", "SupplyDogovor", obj.Account, new { @dataToggle="ajax-modal", @style="text-decoration: underline;" })
+                    @Html.ActionLink("Данные по счету", "AccountInfoDelivery", "Report", obj.Account, new { @dataToggle="ajax-modal", @style="text-decoration: underline;" })
                 </div>
                 <div class="main-body-element-monitors">
                     @if (obj.Monitors.Any())
                     {
-                        @Html.ActionLink("Товары", "Monitors", "SupplyDogovor", obj, new { @dataToggle="ajax-modal", @style="text-decoration: underline;" })
+                        @Html.ActionLink("Товары", "MonitorsDelivery", "Report", obj, new { @dataToggle="ajax-modal", @style="text-decoration: underline;" })
                     }
                     else
                     {
