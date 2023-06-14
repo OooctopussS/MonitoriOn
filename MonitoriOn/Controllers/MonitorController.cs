@@ -130,7 +130,23 @@ namespace MonitoriOn.Controllers
                         }
                         else
                         {
-                            monitorVM.Monitor.Image = objFromDb.Image!;
+                            if (files.Count > 0)
+                            {
+                                string upload = webRootPath + WC.ImagePath;
+                                string fileName = Guid.NewGuid().ToString();
+                                string extension = Path.GetExtension(files[0].FileName);
+
+                                using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                                {
+                                    files[0].CopyTo(fileStream);
+                                }
+
+                                monitorVM.Monitor.Image = fileName + extension;
+                            }
+                            else
+                            {
+                                monitorVM.Monitor.Image = objFromDb.Image;
+                            }
                         }
 
                         monitorVM.Monitor.Sost = 1;

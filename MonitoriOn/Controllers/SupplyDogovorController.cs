@@ -43,12 +43,55 @@ namespace MonitoriOn.Controllers
                     if (supplyDogovor.Account.IsReceived)
                     {
                         item.Sost = 1;
+                        supplyDogovor.Account.DateRecieved = DateTime.Now;
                     }
                     else
                     {
                         item.Sost = 0;
                     }
+
+                    var dbBrand = _db.Brands.FirstOrDefault(x => x.Name == item.Brand.Name);
+
+                    if (dbBrand != null)
+                    {
+                        item.Brand = dbBrand;
+                    }
+
+                    var dbRes = _db.DisplayResolutions.FirstOrDefault(x => x.Name == item.DisplayResolution.Name);
+
+                    if (dbRes != null)
+                    {
+                        item.DisplayResolution = dbRes;
+                    }
+
+                    var dbFrame = _db.FrameUpdates.FirstOrDefault(x => x.Name == item.FrameUpdate.Name);
+
+                    if (dbFrame != null)
+                    {
+                        item.FrameUpdate = dbFrame;
+                    }
+
+                    foreach (var mon in supplyDogovor.Monitors)
+                    {
+                        if(item.Brand.Name == mon.Brand.Name)
+                        {
+                            mon.Brand = item.Brand;
+                        };
+
+                        if (item.DisplayResolution.Name == mon.DisplayResolution.Name)
+                        {
+                            mon.DisplayResolution = item.DisplayResolution;
+                        };
+
+                        if (item.FrameUpdate.Name == mon.FrameUpdate.Name)
+                        {
+                            mon.FrameUpdate = item.FrameUpdate;
+                        };
+                    }
                 }
+
+                if (supplyDogovor.Date == DateTime.MinValue)
+                    supplyDogovor.Date = DateTime.Now;
 
                 _db.SupplyDogovors.Add(supplyDogovor);
                 _db.SaveChanges();

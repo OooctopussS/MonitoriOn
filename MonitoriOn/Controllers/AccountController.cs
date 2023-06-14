@@ -14,13 +14,16 @@ namespace MonitoriOn.Controllers
     {
         private readonly UserManager<MonitoriOnUser> _userManager;
         private readonly SignInManager<MonitoriOnUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public AccountController(
             SignInManager<MonitoriOnUser> signInManager,
-            UserManager<MonitoriOnUser> userManager)
+            UserManager<MonitoriOnUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
+
         }
 
 
